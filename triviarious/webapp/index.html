@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Triviarious — TikTok動画メーカー</title>
+<style>
+  :root { --brand:#2792c3; --ink:#1c2430; --muted:#6b7684; --line:#e3e8ef; --bg:#f5f7fa; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family:"Hiragino Sans","Yu Gothic",Meiryo,system-ui,sans-serif;
+         color:var(--ink); background:var(--bg); }
+  header { padding:20px 28px; border-bottom:1px solid var(--line); background:#fff;
+           display:flex; align-items:baseline; gap:12px; }
+  header h1 { font-size:20px; margin:0; }
+  header .sub { color:var(--muted); font-size:13px; }
+  .wrap { max-width:1180px; margin:0 auto; padding:26px; display:grid;
+          grid-template-columns: 1fr 380px; gap:30px; align-items:start; }
+  @media (max-width:920px){ .wrap{ grid-template-columns:1fr; } }
+
+  .card { background:#fff; border:1px solid var(--line); border-radius:16px; padding:22px; margin-bottom:22px; }
+  .card h2 { font-size:15px; margin:0 0 14px; letter-spacing:.02em; }
+  .step-badge { display:inline-block; width:22px; height:22px; line-height:22px; text-align:center;
+                background:var(--brand); color:#fff; border-radius:50%; font-size:13px; margin-right:8px; }
+
+  /* 検索バー */
+  .searchbar { display:flex; gap:10px; }
+  .searchbar input { flex:1; font-size:18px; padding:14px 16px; border:2px solid var(--line);
+                     border-radius:12px; outline:none; }
+  .searchbar input:focus { border-color:var(--brand); }
+  .row { display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }
+  .row label { font-size:13px; color:var(--muted); display:flex; flex-direction:column; gap:4px; }
+  .row select, .row input[type=number] { padding:8px 10px; border:1px solid var(--line); border-radius:8px; font-size:14px; }
+
+  /* テーマカード */
+  .themes { display:grid; grid-template-columns:repeat(auto-fill,minmax(120px,1fr)); gap:12px; }
+  .theme { border:2px solid var(--line); border-radius:12px; padding:10px; cursor:pointer;
+           text-align:center; transition:.15s; background:#fff; }
+  .theme:hover { border-color:var(--brand); transform:translateY(-2px); box-shadow:0 6px 18px rgba(39,146,195,.15); }
+  .theme.sel { border-color:var(--brand); box-shadow:0 0 0 3px rgba(39,146,195,.2); }
+  .theme .swatch { height:64px; border-radius:8px; margin-bottom:8px; overflow:hidden; position:relative; }
+  .theme .nm { font-size:13px; font-weight:700; }
+  .theme .ds { font-size:11px; color:var(--muted); line-height:1.35; margin-top:2px; }
+
+  /* 色調整 */
+  .pickers { display:flex; gap:16px; flex-wrap:wrap; align-items:flex-end; }
+  .picker { display:flex; flex-direction:column; gap:6px; font-size:12px; color:var(--muted); }
+  .picker input[type=color] { width:56px; height:40px; border:1px solid var(--line); border-radius:8px; padding:2px; background:#fff; cursor:pointer; }
+  .picker .hex { font-family:monospace; font-size:11px; }
+  .reset { font-size:12px; color:var(--brand); background:none; border:none; cursor:pointer; padding:6px 0; }
+
+  /* プレビュー(縦型を縮小表示) */
+  .previewpane { position:sticky; top:26px; }
+  .phone { width:340px; height:604px; border-radius:26px; overflow:hidden; margin:0 auto;
+           box-shadow:0 18px 50px rgba(0,0,0,.22); background:#000; }
+  .stage-scale { width:1080px; height:1920px; transform:scale(0.31481); transform-origin:top left; }
+  .preview-tabs { display:flex; gap:6px; justify-content:center; margin:14px 0 4px; }
+  .preview-tabs button { font-size:12px; padding:6px 12px; border:1px solid var(--line); background:#fff;
+                         border-radius:20px; cursor:pointer; color:var(--muted); }
+  .preview-tabs button.on { background:var(--brand); color:#fff; border-color:var(--brand); }
+
+  /* ボタン・状態 */
+  .actions { display:flex; gap:12px; margin-top:6px; }
+  button.primary { background:var(--brand); color:#fff; border:none; padding:14px 22px; font-size:16px;
+                   border-radius:12px; cursor:pointer; font-weight:700; }
+  button.primary:disabled { opacity:.5; cursor:not-allowed; }
+  button.ghost { background:#fff; color:var(--ink); border:1px solid var(--line); padding:14px 18px;
+                 border-radius:12px; cursor:pointer; }
+  .status { margin-top:14px; font-size:14px; color:var(--muted); min-height:22px; }
+  .status.err { color:#c0392b; }
+  .spinner { display:inline-block; width:14px; height:14px; border:2px solid var(--line);
+             border-top-color:var(--brand); border-radius:50%; animation:spin .8s linear infinite; vertical-align:-2px; margin-right:6px; }
+  @keyframes spin { to { transform:rotate(360deg); } }
+
+  .result video { width:100%; border-radius:12px; background:#000; }
+  .result .links { margin-top:10px; display:flex; gap:16px; font-size:14px; }
+  .result a { color:var(--brand); }
+  .hint { font-size:12px; color:var(--muted); margin-top:8px; line-height:1.5; }
+</style>
+</head>
+<body>
+<header>
+  <h1>🎬 Triviarious</h1>
+  <span class="sub">お題を入れて、テロップの色とデザインを選ぶだけ。台本と縦型動画を作ります。</span>
+</header>
+
+<div class="wrap">
+  <!-- 左: 操作パネル -->
+  <div>
+    <div class="card">
+      <h2><span class="step-badge">1</span>お題を入力</h2>
+      <div class="searchbar">
+        <input id="topic" placeholder="例: 縹色 / タコの意外な生態 / 江戸時代の物価" autocomplete="off">
+      </div>
+      <div class="row">
+        <label>雰囲気
+          <select id="style">
+            <option>雑学</option><option>解説</option><option>ハウツー</option>
+            <option>豆知識</option><option>ミステリー</option>
+          </select>
+        </label>
+        <label>想定尺(秒)
+          <input id="length" type="number" value="45" min="15" max="90" step="5">
+        </label>
+      </div>
+      <p class="hint">※ お題から台本を作るには Anthropic APIキーが必要です(サーバ側)。
+        台本を手元に用意している場合はこの手順を飛ばして下のデザイン選択だけでもレンダリングできます。</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="step-badge">2</span>テロップのデザインを選ぶ</h2>
+      <div class="themes" id="themes"></div>
+    </div>
+
+    <div class="card">
+      <h2><span class="step-badge">3</span>色を調整(カーソルで即プレビュー)</h2>
+      <div class="pickers" id="pickers"></div>
+      <button class="reset" id="reset">↺ このテーマの色を初期に戻す</button>
+    </div>
+
+    <div class="card">
+      <h2><span class="step-badge">4</span>作成</h2>
+      <div class="actions">
+        <button class="primary" id="make">お題から台本＋動画を作る</button>
+        <button class="ghost" id="renderOnly" title="台本生成をスキップし、サンプル文言でデザインだけ動画化">
+          文言サンプルで動画だけ試す
+        </button>
+      </div>
+      <div class="status" id="status"></div>
+      <div class="result" id="result"></div>
+    </div>
+  </div>
+
+  <!-- 右: プレビュー -->
+  <div class="previewpane">
+    <div class="phone">
+      <div class="stage-scale" id="previewHost"></div>
+    </div>
+    <div class="preview-tabs" id="tabs">
+      <button data-role="hook" class="on">冒頭(フック)</button>
+      <button data-role="body">本編</button>
+      <button data-role="cta">締め(CTA)</button>
+    </div>
+    <p class="hint" style="text-align:center">実際の動画は 1080×1920。ここでは縮小表示しています。</p>
+  </div>
+</div>
+
+<script>
+const state = {
+  cfg: null,
+  theme: "pop",
+  overrides: {},          // theme -> {var: color}
+  role: "hook",
+  script: null,           // 生成された台本(あれば)
+  outDir: null,
+  sampleTelop: {
+    hook: {kicker:"知って得する話", telop:"実は**縹色**って\nどんな色?", sub:"日本の伝統色シリーズ"},
+    body: {kicker:"知って得する話", telop:"縹色は**藍染め**の\n代表的な青", sub:"平安から続く色"},
+    cta:  {kicker:"知って得する話", telop:"他の**伝統色**も\n投稿中!", sub:"保存してね"},
+  }
+};
+
+const $ = s => document.querySelector(s);
+
+async function boot() {
+  state.cfg = await (await fetch("/api/config")).json();
+  // レイアウト+全テーマCSSをプレビュー用に注入
+  const style = document.createElement("style");
+  style.textContent = state.cfg.layout_css + "\n" +
+    Object.values(state.cfg.theme_css).join("\n");
+  document.head.appendChild(style);
+  renderThemeCards();
+  selectTheme(state.theme);
+  bindTabs();
+  $("#topic").addEventListener("input", e => {
+    // お題をプレビューのkickerに反映
+    const t = e.target.value.trim();
+    for (const r of ["hook","body","cta"]) {
+      if (t) state.sampleTelop[r].kicker = t + " の豆知識";
+    }
+    renderPreview();
+  });
+}
+
+function renderThemeCards() {
+  const host = $("#themes");
+  host.innerHTML = "";
+  for (const t of state.cfg.themes) {
+    const el = document.createElement("div");
+    el.className = "theme" + (t.name === state.theme ? " sel" : "");
+    el.innerHTML =
+      `<div class="swatch" id="sw_${t.name}"></div>
+       <div class="nm">${t.label}</div><div class="ds">${t.desc}</div>`;
+    el.addEventListener("mouseenter", () => previewTheme(t.name));
+    el.addEventListener("mouseleave", () => previewTheme(state.theme));
+    el.addEventListener("click", () => selectTheme(t.name));
+    host.appendChild(el);
+    fillSwatch(t.name);
+  }
+}
+
+function fillSwatch(name) {
+  // カード内の小さなプレビュー
+  const host = $("#sw_" + name);
+  host.innerHTML =
+    `<div class="theme-${name}" style="width:100%;height:100%;display:flex;
+       align-items:center;justify-content:center;font-weight:900;font-size:13px">
+       <span class="telop" style="font-size:15px;-webkit-text-stroke:2px transparent">Aa<em>強調</em></span>
+     </div>`;
+  applyOverridesTo(host, name);
+}
+
+function selectTheme(name) {
+  state.theme = name;
+  document.querySelectorAll(".theme").forEach((el, i) =>
+    el.classList.toggle("sel", state.cfg.themes[i].name === name));
+  renderPickers();
+  renderPreview();
+}
+
+function previewTheme(name) { renderPreview(name); }
+
+function renderPickers() {
+  const host = $("#pickers");
+  host.innerHTML = "";
+  const t = state.cfg.themes.find(x => x.name === state.theme);
+  const ov = state.overrides[state.theme] || {};
+  for (const a of t.adjust) {
+    const cur = ov[a.var] || a.default;
+    const wrap = document.createElement("div");
+    wrap.className = "picker";
+    wrap.innerHTML =
+      `<span>${a.label}</span>
+       <input type="color" value="${toHex(cur)}" data-var="${a.var}">
+       <span class="hex">${toHex(cur)}</span>`;
+    const input = wrap.querySelector("input");
+    input.addEventListener("input", e => {
+      state.overrides[state.theme] = state.overrides[state.theme] || {};
+      state.overrides[state.theme][a.var] = e.target.value;
+      wrap.querySelector(".hex").textContent = e.target.value;
+      fillSwatch(state.theme);
+      renderPreview();
+    });
+    host.appendChild(wrap);
+  }
+}
+
+$("#reset").addEventListener("click", () => {
+  delete state.overrides[state.theme];
+  renderPickers(); fillSwatch(state.theme); renderPreview();
+});
+
+function bindTabs() {
+  document.querySelectorAll("#tabs button").forEach(b =>
+    b.addEventListener("click", () => {
+      document.querySelectorAll("#tabs button").forEach(x => x.classList.remove("on"));
+      b.classList.add("on");
+      state.role = b.dataset.role;
+      renderPreview();
+    }));
+}
+
+function currentScene(role) {
+  // 生成済み台本があればそこから該当roleの最初のシーンを使う
+  if (state.script) {
+    const sc = state.script.scenes.find(s => s.role === role) || state.script.scenes[0];
+    return {
+      kicker: state.script.meta.title,
+      telop: sc.telop, sub: sc.subtelop,
+    };
+  }
+  const s = state.sampleTelop[role];
+  return {kicker: s.kicker, telop: s.telop, sub: s.sub};
+}
+
+function renderPreview(themeOverride) {
+  const theme = themeOverride || state.theme;
+  const role = state.role;
+  const sc = currentScene(role);
+  const total = 5, idx = role === "hook" ? 0 : role === "cta" ? 4 : 2;
+  const steps = Array.from({length: total}, (_, i) =>
+    `<div class="step${i <= idx ? " active" : ""}"></div>`).join("");
+  const swipe = role === "hook" ? "▼ 最後まで見てね"
+              : role === "cta" ? "フォローで続きが見られます" : "";
+  const host = $("#previewHost");
+  host.className = "stage-scale theme-" + theme + " role-" + role;
+  host.innerHTML =
+    `<div class="stage">
+       <header class="top"><div class="kicker">${esc(sc.kicker)}</div>
+         <div class="index">${idx+1}/${total}</div></header>
+       <main class="center">
+         <div class="telop">${telopHtml(sc.telop)}</div>
+         ${sc.sub ? `<div class="subtelop">${telopHtml(sc.sub)}</div>` : ""}
+       </main>
+       <footer class="bottom"><div class="steps">${steps}</div>
+         <div class="swipe">${esc(swipe)}</div></footer>
+     </div>`;
+  applyOverridesTo(host, theme);
+}
+
+function applyOverridesTo(el, theme) {
+  // まず既存のov変数をクリアしてからテーマ分を適用
+  ["--ov-bg","--ov-accent","--ov-text","--ov-glow","--ov-glow-soft","--ov-bg-solid"]
+    .forEach(v => el.style.removeProperty(v));
+  const ov = state.overrides[theme];
+  if (!ov) return;
+  for (const [k, v] of Object.entries(ov)) {
+    el.style.setProperty(k, v);
+    if (k === "--ov-bg") el.style.setProperty("--ov-bg-solid", v);
+  }
+}
+
+function telopHtml(t) {
+  return esc(t).replace(/\*\*(.+?)\*\*/g, "<em>$1</em>").replace(/\n/g, "<br>");
+}
+function esc(s){ return (s||"").replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c])); }
+function toHex(c){
+  if (/^#[0-9a-f]{6}$/i.test(c)) return c;
+  const m = c.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/i);
+  if (m) return "#" + [1,2,3].map(i => (+m[i]).toString(16).padStart(2,"0")).join("");
+  return "#888888";
+}
+
+// ---- 生成 ----
+function setStatus(msg, isErr) {
+  const el = $("#status");
+  el.className = "status" + (isErr ? " err" : "");
+  el.innerHTML = msg;
+}
+
+async function postJSON(url, body) {
+  const r = await fetch(url, {method:"POST", headers:{"Content-Type":"application/json"},
+                             body: JSON.stringify(body)});
+  const data = await r.json();
+  if (!r.ok) throw new Error(data.error || ("HTTP " + r.status));
+  return data;
+}
+
+$("#make").addEventListener("click", async () => {
+  const topic = $("#topic").value.trim();
+  if (!topic) { setStatus("お題を入力してください", true); return; }
+  toggle(true);
+  try {
+    setStatus('<span class="spinner"></span>台本を生成中…(Web検索で事実確認するため1分ほどかかります)');
+    const g = await postJSON("/api/generate", {
+      topic, style: $("#style").value, length: +$("#length").value });
+    state.script = g.script; state.outDir = g.out_dir;
+    renderPreview();
+    setStatus('<span class="spinner"></span>台本OK(' + g.total_sec + '秒)。動画をレンダリング中…');
+    const r = await postJSON("/api/render", {
+      script: g.script, theme: state.theme,
+      overrides: state.overrides[state.theme] || {}, out_dir: g.out_dir });
+    showResult(r);
+    setStatus("完成しました 🎉");
+  } catch (e) {
+    setStatus("エラー: " + e.message, true);
+  } finally { toggle(false); }
+});
+
+$("#renderOnly").addEventListener("click", async () => {
+  toggle(true);
+  try {
+    const topic = $("#topic").value.trim() || "サンプル";
+    const scenes = ["hook","body","cta"].map((role, i) => {
+      const s = state.sampleTelop[role];
+      return {role, telop:s.telop, subtelop:s.sub, narration:s.telop.replace(/\*\*/g,""),
+              duration_sec: role==="body"?4:3.5};
+    });
+    const script = {meta:{topic, title: topic, style:"サンプル", target_length_sec:15},
+      scenes, sources:[], fact_check_notes:"", bgm_suggestions:[], hashtags:[], posting_tips:""};
+    setStatus('<span class="spinner"></span>デザイン確認用の動画をレンダリング中…');
+    const r = await postJSON("/api/render", {
+      script, theme: state.theme, overrides: state.overrides[state.theme] || {}, quality:"draft" });
+    showResult(r);
+    setStatus("サンプル動画ができました(文言はサンプルです)");
+  } catch (e) { setStatus("エラー: " + e.message, true); }
+  finally { toggle(false); }
+});
+
+function showResult(r) {
+  $("#result").innerHTML =
+    `<video src="${r.video_url}" controls autoplay muted loop playsinline></video>
+     <div class="links">
+       <a href="${r.video_url}" download>⬇ 動画を保存</a>
+       <a href="${r.md_url}" target="_blank">📝 台本.md を開く</a>
+     </div>`;
+}
+
+function toggle(busy) { $("#make").disabled = busy; $("#renderOnly").disabled = busy; }
+
+boot();
+</script>
+</body>
+</html>

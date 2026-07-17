@@ -25,6 +25,7 @@ class RenderOptions:
     quality: str = "normal"  # draft: アニメなし / normal: 1/2サンプリング / high: 全フレーム
     keep_frames: bool = False
     ffmpeg: str | None = None
+    overrides: dict | None = None  # 色オーバーライド {"--ov-accent": "#2792c3", ...}
 
 
 def _capture_step(fps: int, quality: str) -> int:
@@ -65,6 +66,7 @@ def render_video(script: dict, out_path: Path, opts: RenderOptions, log=print) -
                     scene_index=i,
                     scene_total=len(scenes),
                     swipe_text=SWIPE_TEXTS.get(sc["role"], ""),
+                    overrides=opts.overrides,
                 ),
                 encoding="utf-8",
             )

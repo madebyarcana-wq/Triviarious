@@ -1,42 +1,46 @@
 /* ネオン / サイバー — 黒背景+シアン発光、強調はマゼンタ。テック・ガジェット・ミステリー系向け */
-.theme-neon { background: #05010d; }
+/* 調整可能: --ov-bg(背景) / --ov-glow(発光色) / --ov-accent(強調色) */
+.theme-neon { background: var(--ov-bg, #05010d); }
 .theme-neon .stage {
   background:
-    linear-gradient(rgba(0,255,240,.06) 2px, transparent 2px),
-    linear-gradient(90deg, rgba(0,255,240,.06) 2px, transparent 2px),
+    linear-gradient(var(--ov-glow-soft, rgba(0,255,240,.06)) 2px, transparent 2px),
+    linear-gradient(90deg, var(--ov-glow-soft, rgba(0,255,240,.06)) 2px, transparent 2px),
     radial-gradient(ellipse 900px 900px at 50% 110%, rgba(255,0,170,.16), transparent 70%);
   background-size: 120px 120px, 120px 120px, 100% 100%;
 }
 .theme-neon .kicker {
-  color: #00fff0;
-  border: 3px solid rgba(0,255,240,.6);
+  color: var(--ov-glow, #00fff0);
+  border: 3px solid var(--ov-glow, rgba(0,255,240,.6));
   border-radius: 8px;
   padding: 12px 30px;
-  text-shadow: 0 0 18px rgba(0,255,240,.9);
+  text-shadow: 0 0 18px var(--ov-glow, rgba(0,255,240,.9));
   box-shadow: 0 0 24px rgba(0,255,240,.35), inset 0 0 18px rgba(0,255,240,.12);
 }
-.theme-neon .index { color: rgba(0,255,240,.8); }
+.theme-neon .index { color: var(--ov-glow, rgba(0,255,240,.8)); }
 .theme-neon .telop {
-  color: #fff;
+  color: var(--ov-text, #fff);
   text-shadow:
-    0 0 8px rgba(0,255,240,.9),
-    0 0 28px rgba(0,255,240,.65),
-    0 0 70px rgba(0,255,240,.4);
+    0 0 8px var(--ov-glow, rgba(0,255,240,.9)),
+    0 0 28px var(--ov-glow, rgba(0,255,240,.65)),
+    0 0 70px var(--ov-glow, rgba(0,255,240,.4));
   animation-name: fade-in; animation-duration: .5s;
 }
 .theme-neon .telop em {
   font-style: normal;
-  color: #ff2fb3;
+  color: var(--ov-accent, #ff2fb3);
   text-shadow:
-    0 0 8px rgba(255,47,179,.95),
-    0 0 30px rgba(255,47,179,.7),
-    0 0 76px rgba(255,47,179,.45);
+    0 0 8px var(--ov-accent, rgba(255,47,179,.95)),
+    0 0 30px var(--ov-accent, rgba(255,47,179,.7)),
+    0 0 76px var(--ov-accent, rgba(255,47,179,.45));
 }
 .theme-neon .subtelop {
-  color: rgba(255,255,255,.85);
-  text-shadow: 0 0 16px rgba(0,255,240,.5);
+  color: var(--ov-text, rgba(255,255,255,.85));
+  text-shadow: 0 0 16px var(--ov-glow, rgba(0,255,240,.5));
   animation-name: fade-in; animation-duration: .5s;
 }
 .theme-neon .step { background: rgba(0,255,240,.22); }
-.theme-neon .step.active { background: #00fff0; box-shadow: 0 0 16px rgba(0,255,240,.9); }
-.theme-neon .swipe { color: rgba(0,255,240,.75); }
+.theme-neon .step.active {
+  background: var(--ov-glow, #00fff0);
+  box-shadow: 0 0 16px var(--ov-glow, rgba(0,255,240,.9));
+}
+.theme-neon .swipe { color: var(--ov-glow, rgba(0,255,240,.75)); }

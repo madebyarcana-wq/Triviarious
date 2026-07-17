@@ -1,29 +1,32 @@
 /* ニュース / 解説風 — 白カード+紺文字+赤アクセント。情報・ビジネス・時事系向け */
-.theme-news { background: linear-gradient(180deg, #eef2f7 0%, #dfe6ee 100%); }
+/* 調整可能: --ov-bg(背景) / --ov-accent(アクセント色) / --ov-text(見出し文字色) */
+.theme-news {
+  background: var(--ov-bg, linear-gradient(180deg, #eef2f7 0%, #dfe6ee 100%));
+}
 .theme-news .stage {
   background:
-    linear-gradient(90deg, #0d2149 0 18px, transparent 18px),
+    linear-gradient(90deg, var(--ov-accent, #0d2149) 0 18px, transparent 18px),
     repeating-linear-gradient(0deg, transparent 0 118px, rgba(13,33,73,.045) 118px 120px);
 }
 .theme-news .kicker {
-  color: #fff; background: #0d2149;
+  color: #fff; background: var(--ov-text, #0d2149);
   padding: 14px 34px; border-radius: 8px;
-  border-left: 12px solid #d7263d;
+  border-left: 12px solid var(--ov-accent, #d7263d);
 }
-.theme-news .index { color: #0d2149; }
+.theme-news .index { color: var(--ov-text, #0d2149); }
 .theme-news .center { gap: 40px; }
 .theme-news .telop {
-  color: #0d2149;
+  color: var(--ov-text, #0d2149);
   background: #fff;
   padding: 70px 56px;
   border-radius: 20px;
-  border-top: 14px solid #d7263d;
+  border-top: 14px solid var(--ov-accent, #d7263d);
   box-shadow: 0 24px 60px rgba(13,33,73,.18);
   animation-name: fade-up; animation-duration: .4s;
 }
 .theme-news .telop em {
   font-style: normal;
-  color: #d7263d;
+  color: var(--ov-accent, #d7263d);
   text-decoration: underline;
   text-decoration-thickness: 10px;
   text-underline-offset: 12px;
@@ -33,5 +36,5 @@
   animation-name: fade-up; animation-duration: .4s;
 }
 .theme-news .step { background: rgba(13,33,73,.18); }
-.theme-news .step.active { background: #d7263d; }
+.theme-news .step.active { background: var(--ov-accent, #d7263d); }
 .theme-news .swipe { color: #33415c; }

@@ -107,6 +107,12 @@ def cmd_create(args) -> None:
     cmd_render(args)
 
 
+def cmd_serve(args) -> None:
+    from .server import serve
+
+    serve(host=args.host, port=args.port, open_browser=not args.no_browser)
+
+
 def cmd_doctor(args) -> None:
     from . import capture, encoder
 
@@ -185,6 +191,12 @@ def build_parser() -> argparse.ArgumentParser:
     add_render_args(c)
     c.add_argument("--video-out", help="出力動画パス")
     c.set_defaults(func=cmd_create)
+
+    s = sub.add_parser("serve", help="Web UI(検索バー+テーマ選択+色調整)を起動")
+    s.add_argument("--host", default="127.0.0.1")
+    s.add_argument("--port", type=int, default=8765)
+    s.add_argument("--no-browser", action="store_true", help="ブラウザを自動で開かない")
+    s.set_defaults(func=cmd_serve)
 
     d = sub.add_parser("doctor", help="実行環境(ブラウザ/ffmpeg/APIキー)を診断")
     d.set_defaults(func=cmd_doctor)

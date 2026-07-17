@@ -1,0 +1,56 @@
+/* ==== 共通レイアウト(1080x1920 縦型) ==== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; }
+body {
+  font-family: "Noto Sans JP", "Hiragino Sans", "Hiragino Kaku Gothic ProN",
+               "Yu Gothic", "YuGothic", Meiryo, "IPAPGothic", "IPAGothic", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.stage {
+  position: relative;
+  width: 1080px; height: 1920px;
+  display: flex; flex-direction: column;
+  justify-content: space-between;
+  padding: 140px 70px 170px;
+}
+.top    { display: flex; justify-content: space-between; align-items: center; }
+.kicker { font-size: 40px; font-weight: 700; letter-spacing: .06em; }
+.index  { font-size: 36px; font-weight: 700; opacity: .85; }
+.center {
+  flex: 1;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  gap: 48px;
+}
+.telop {
+  font-size: 88px; font-weight: 900;
+  line-height: 1.5;
+  max-width: 940px;
+  overflow-wrap: anywhere;
+}
+.subtelop { font-size: 46px; font-weight: 700; line-height: 1.6; max-width: 900px; }
+.bottom { display: flex; flex-direction: column; align-items: center; gap: 28px; }
+.steps  { display: flex; gap: 18px; }
+.step   { width: 26px; height: 26px; border-radius: 50%; }
+.swipe  { font-size: 34px; font-weight: 700; letter-spacing: .2em; opacity: .8; }
+
+/* フック(冒頭)・CTA(締め)シーンの調整 */
+.role-hook .telop { font-size: 104px; }
+.role-cta  .telop { font-size: 92px; }
+
+/* ==== 入場アニメーション(?t= で任意時刻に固定してキャプチャする) ==== */
+@keyframes pop-in {
+  0%   { opacity: 0; transform: translateY(60px) scale(.82); }
+  60%  { opacity: 1; transform: translateY(-10px) scale(1.05); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes fade-up {
+  0%   { opacity: 0; transform: translateY(40px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+.anim { animation-fill-mode: both; animation-timing-function: cubic-bezier(.22,1,.36,1); }

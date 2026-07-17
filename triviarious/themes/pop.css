@@ -1,18 +1,21 @@
 /* ポップ / バラエティ風 — 白文字+黒縁取り、強調は黄色。エンタメ・雑学系向け */
-.theme-pop { background: linear-gradient(165deg, #ff7a45 0%, #ff4d6d 55%, #c9184a 100%); }
+/* 調整可能: --ov-bg(背景) / --ov-accent(強調色) / --ov-text(本文色) */
+.theme-pop {
+  background: var(--ov-bg, linear-gradient(165deg, #ff7a45 0%, #ff4d6d 55%, #c9184a 100%));
+}
 .theme-pop .stage {
   background:
     radial-gradient(ellipse 900px 500px at 15% 8%, rgba(255,255,255,.14), transparent 60%),
     radial-gradient(ellipse 700px 700px at 90% 95%, rgba(0,0,0,.18), transparent 65%);
 }
 .theme-pop .kicker {
-  color: #c9184a; background: #fff;
+  color: var(--ov-bg-solid, #c9184a); background: #fff;
   padding: 14px 34px; border-radius: 999px;
   box-shadow: 0 8px 22px rgba(0,0,0,.25);
 }
 .theme-pop .index { color: #fff; }
 .theme-pop .telop {
-  color: #fff;
+  color: var(--ov-text, #fff);
   -webkit-text-stroke: 14px #1a1a1a;
   paint-order: stroke fill;
   text-shadow: 0 12px 30px rgba(0,0,0,.35);
@@ -20,15 +23,18 @@
 }
 .theme-pop .telop em {
   font-style: normal;
-  color: #ffe600;
+  color: var(--ov-accent, #ffe600);
   font-size: 1.18em;
 }
 .theme-pop .subtelop {
-  color: #fff;
+  color: var(--ov-text, #fff);
   -webkit-text-stroke: 8px #1a1a1a;
   paint-order: stroke fill;
   animation-name: fade-up; animation-duration: .45s;
 }
 .theme-pop .step { background: rgba(255,255,255,.35); }
-.theme-pop .step.active { background: #ffe600; box-shadow: 0 0 14px rgba(255,230,0,.8); }
+.theme-pop .step.active {
+  background: var(--ov-accent, #ffe600);
+  box-shadow: 0 0 14px var(--ov-accent, rgba(255,230,0,.8));
+}
 .theme-pop .swipe { color: #fff; }
