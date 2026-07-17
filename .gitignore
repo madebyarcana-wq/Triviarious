@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+output/
+*.mp4
+*.webm
+frames/
+.venv/
+venv/
+.DS_Store

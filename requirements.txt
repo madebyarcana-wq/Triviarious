@@ -1,0 +1,5 @@
+# 台本生成(generate / create)に必要
+anthropic>=0.69
+
+# ffmpeg が未インストールの環境向け(任意)。システムに ffmpeg があれば不要
+imageio-ffmpeg>=0.5

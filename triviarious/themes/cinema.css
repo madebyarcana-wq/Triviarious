@@ -1,0 +1,34 @@
+/* シネマ / 落ち着き — 暗背景+明朝体+金アクセント。歴史・教養・ストーリー系向け */
+.theme-cinema { background: #0b0b0f; }
+.theme-cinema .stage {
+  background: radial-gradient(ellipse 1100px 1500px at 50% 45%, rgba(255,255,255,.05), rgba(0,0,0,.55) 90%);
+  font-family: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", "YuMincho",
+               "IPAPMincho", "IPAMincho", serif;
+}
+.theme-cinema .kicker {
+  color: #c9a86a; font-weight: 600; letter-spacing: .3em;
+  border-bottom: 2px solid rgba(201,168,106,.5);
+  padding-bottom: 10px;
+}
+.theme-cinema .index { color: rgba(245,241,230,.6); }
+.theme-cinema .telop {
+  color: #f5f1e6;
+  font-weight: 600;
+  letter-spacing: .12em;
+  line-height: 1.9;
+  text-shadow: 0 4px 30px rgba(0,0,0,.8);
+  animation-name: fade-in; animation-duration: .9s;
+}
+.theme-cinema .telop em {
+  font-style: normal;
+  color: #c9a86a;
+  font-size: 1.12em;
+}
+.theme-cinema .subtelop {
+  color: rgba(245,241,230,.75);
+  letter-spacing: .08em;
+  animation-name: fade-in; animation-duration: .9s;
+}
+.theme-cinema .step { background: rgba(245,241,230,.2); width: 20px; height: 20px; }
+.theme-cinema .step.active { background: #c9a86a; }
+.theme-cinema .swipe { color: rgba(245,241,230,.55); }

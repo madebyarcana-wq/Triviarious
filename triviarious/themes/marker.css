@@ -1,0 +1,31 @@
+/* マーカー / シンプル — 白背景+黒太字+蛍光ペン強調。ハウツー・学習・ライフハック系向け */
+.theme-marker { background: #fffdf6; }
+.theme-marker .stage {
+  background:
+    radial-gradient(circle 5px at 40px 40px, rgba(26,26,26,.12) 4px, transparent 5px),
+    linear-gradient(180deg, transparent 0 96%, rgba(26,26,26,.06) 100%);
+}
+.theme-marker .kicker {
+  color: #1a1a1a;
+  border: 4px solid #1a1a1a;
+  border-radius: 12px;
+  padding: 12px 30px;
+  box-shadow: 6px 6px 0 #ffd60a;
+}
+.theme-marker .index { color: #8d8d8d; }
+.theme-marker .telop {
+  color: #1a1a1a;
+  animation-name: fade-up; animation-duration: .4s;
+}
+.theme-marker .telop em {
+  font-style: normal;
+  background: linear-gradient(transparent 55%, #ffd60a 55% 92%, transparent 92%);
+  padding: 0 .08em;
+}
+.theme-marker .subtelop {
+  color: #444;
+  animation-name: fade-up; animation-duration: .4s;
+}
+.theme-marker .step { background: rgba(26,26,26,.15); }
+.theme-marker .step.active { background: #fb5607; }
+.theme-marker .swipe { color: #8d8d8d; }

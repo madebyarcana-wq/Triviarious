@@ -1,0 +1,85 @@
+{
+  "meta": {
+    "topic": "タコの意外な生態",
+    "title": "タコの知られざる3つの秘密",
+    "style": "雑学",
+    "target_length_sec": 40
+  },
+  "scenes": [
+    {
+      "role": "hook",
+      "telop": "実は**心臓が3つ**ある\n生き物、知ってる?",
+      "subtelop": "身近なのに謎だらけ",
+      "narration": "実は心臓が3つもある生き物がいるんです。知ってますか?",
+      "duration_sec": 3.5,
+      "note": "冒頭2秒でタコの写真を出すと効果的"
+    },
+    {
+      "role": "body",
+      "telop": "正解は**タコ**!\nしかも青い血が流れる",
+      "subtelop": null,
+      "narration": "正解はタコ。しかも血の色は赤じゃなくて青いんです。",
+      "duration_sec": 4.0,
+      "note": null
+    },
+    {
+      "role": "body",
+      "telop": "心臓のうち**2つ**は\nエラ専用ポンプ",
+      "subtelop": "残り1つが全身用",
+      "narration": "3つのうち2つはエラに血を送る専用、残りの1つが全身に血を回します。",
+      "duration_sec": 5.0,
+      "note": null
+    },
+    {
+      "role": "body",
+      "telop": "腕の**8本**それぞれに\n脳のような神経が",
+      "subtelop": null,
+      "narration": "さらに8本の腕には、それぞれ脳のような神経の塊があって、半分自律で動くんです。",
+      "duration_sec": 5.5,
+      "note": null
+    },
+    {
+      "role": "cta",
+      "telop": "他の**海の雑学**も\n投稿してます",
+      "subtelop": "保存して見返してね",
+      "narration": "他にも海の生き物の雑学を投稿してます。フォローして待っててください。",
+      "duration_sec": 4.0,
+      "note": null
+    }
+  ],
+  "sources": [
+    {
+      "title": "Octopus — Circulatory system",
+      "publisher": "Encyclopaedia Britannica",
+      "url": "https://www.britannica.com/animal/octopus-mollusk",
+      "accessed": "2026-07-17",
+      "used_for": "タコには3つの心臓があり、うち2つがエラ用であること"
+    },
+    {
+      "title": "Why do octopuses have blue blood?",
+      "publisher": "Natural History Museum (UK)",
+      "url": "https://www.nhm.ac.uk/discover/octopus-facts.html",
+      "accessed": "2026-07-17",
+      "used_for": "ヘモシアニンにより血液が青いこと、腕の神経系"
+    }
+  ],
+  "fact_check_notes": "心臓3つ・青い血(ヘモシアニン由来)・腕ごとの神経節は複数の一次情報で確認済み。腕が「半分自律で動く」表現は一般向けの簡略化で、厳密な自律性には諸説あるためナレーションでは断定を避けている。",
+  "bgm_suggestions": [
+    {
+      "mood": "軽快で好奇心をくすぐる",
+      "genre": "ポップ/ウクレレ系",
+      "tempo": "BPM110前後・明るい",
+      "reason": "驚きの雑学をテンポよく見せる本編に合い、最後まで飽きさせない",
+      "search_keywords": ["かわいい ポップ 楽しい", "ukulele happy", "雑学 BGM 軽快"]
+    },
+    {
+      "mood": "少し不思議・水中っぽい",
+      "genre": "ローファイ/アンビエント",
+      "tempo": "BPM80前後・浮遊感",
+      "reason": "海の生き物というテーマの神秘性を演出できる",
+      "search_keywords": ["lofi underwater", "神秘的 海 BGM", "ambient chill"]
+    }
+  ],
+  "hashtags": ["#雑学", "#タコ", "#海の生き物", "#豆知識", "#へえ"],
+  "posting_tips": "夜20〜22時の投稿が伸びやすい。キャプション冒頭に『心臓いくつあると思う?』と問いかけを置くとコメントが増える。"
+}
