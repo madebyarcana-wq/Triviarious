@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from .bgm import free_bgm_markdown
 from .script_schema import total_duration, validate_script
 
 ROLE_LABELS = {"hook": "フック", "body": "本編", "cta": "CTA"}
@@ -105,6 +106,9 @@ def script_to_markdown(script: dict) -> str:
     else:
         lines.append("(BGM提案なし)")
         lines.append("")
+
+    lines.append(free_bgm_markdown())
+    lines.append("")
 
     lines.append(
         "> ⚠️ 投稿前チェック: 上記の出典に目を通し、数値・固有名詞・年号が"
