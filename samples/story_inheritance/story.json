@@ -1,0 +1,980 @@
+{
+  "meta": {
+    "premise": "介護をした妹と、何もしなかった兄の遺産相続。兄が全財産を継ぐ遺言を持ち出す",
+    "genre": "遺産相続・家族の不公平・逆転劇",
+    "title": "兄は実家と預金6千万円、介護した私は裏山の古い小屋。でも小屋の奥にあった父の帳面が、すべてを覆した",
+    "title_candidates": [
+      "兄は実家と預金6千万円、介護した私は裏山の古い小屋。でも小屋の奥にあった父の帳面が、すべてを覆した",
+      "5年介護した私に残されたのは小屋だけ。一度も来なかった兄が全財産…父が法務局に預けていたもの",
+      "「全部俺が継ぐ」と笑った兄。四十九日、親戚の前で青ざめた理由",
+      "兄は全財産、介護した私はボロ小屋。でも父は、もう一通の遺言を残していた",
+      "遺言書を広げて勝ち誇った兄。私が法務局で受け取った一枚の証明書で、立場が入れ替わった"
+    ],
+    "target_minutes": 10,
+    "fiction_notice": "この物語はフィクションです。"
+  },
+  "thumbnail": {
+    "left_label": "兄",
+    "left_text": "実家と預金6千万円",
+    "left_motif": "crown",
+    "right_label": "介護した私",
+    "right_text": "裏山の古い小屋",
+    "right_motif": "shack",
+    "main_text": "でも小屋の奥に父の帳面が…"
+  },
+  "characters": [
+    {
+      "name": "川島美咲",
+      "role": "私(語り手)・34歳",
+      "description": "父を5年間ひとりで介護した妹。介護のために会社を辞めた"
+    },
+    {
+      "name": "川島健一",
+      "role": "兄・40歳",
+      "description": "東京在住。介護に来たのは5年で一度だけ。全財産を継ぐ遺言を持ち出す"
+    },
+    {
+      "name": "川島麗子",
+      "role": "兄の妻",
+      "description": "美咲を家から追い出そうとし、母の形見の着物を捨てる"
+    },
+    {
+      "name": "川島正雄",
+      "role": "父・享年74",
+      "description": "6年前に脳梗塞で倒れ、右手に軽いまひ。リハビリで帳面に日記をつけていた"
+    },
+    {
+      "name": "坂本和子",
+      "role": "叔母(正雄の妹)",
+      "description": "正雄に口止めされ、法務局に送ったことを黙っていた"
+    }
+  ],
+  "emotion_curve": [
+    {
+      "stage": "misfortune",
+      "score": -2,
+      "summary": "介護の末に父が亡くなり、兄の遺言で小屋しか残らない"
+    },
+    {
+      "stage": "worse",
+      "score": -4,
+      "summary": "家を追い出され、母の着物を捨てられ、親戚にも疑われる"
+    },
+    {
+      "stage": "hope",
+      "score": 2,
+      "summary": "小屋の奥から父の帳面と法務局の保管証が見つかる"
+    },
+    {
+      "stage": "despair",
+      "score": -5,
+      "summary": "兄に偽造だと言いふらされ、叔母にも来るなと言われる"
+    },
+    {
+      "stage": "reversal",
+      "score": 3,
+      "summary": "叔母が、父を法務局へ送り、書く姿も見ていたと打ち明ける"
+    },
+    {
+      "stage": "victory",
+      "score": 5,
+      "summary": "新しい遺言が読み上げられ、兄が親戚の前で頭を下げる"
+    }
+  ],
+  "twists": [
+    {
+      "segment_id": 12,
+      "description": "兄の遺言は、父が倒れる前の日付だった"
+    },
+    {
+      "segment_id": 24,
+      "description": "小屋の道具箱の底から、父の帳面と法務局の保管証が出てくる"
+    },
+    {
+      "segment_id": 34,
+      "description": "兄が、父は字が書けなかったと偽造を言い立てる"
+    },
+    {
+      "segment_id": 44,
+      "description": "冷たかった叔母こそが、父を法務局へ送った本人だった"
+    }
+  ],
+  "promise": {
+    "made_in_title": "小屋の奥にあった父の帳面が、すべてを覆す",
+    "fulfilled_segment_id": 46,
+    "how": "帳面に書かれていた法務局の遺言が読み上げられ、兄の遺言の分け方が通らなくなる"
+  },
+  "segments": [
+    {
+      "id": 1,
+      "stage": "hook",
+      "chapter": "プロローグ",
+      "narration": "実家と預金を奪った兄が、青ざめた日の話。",
+      "scene": "親戚が集まる座敷。うつむく兄",
+      "background": {
+        "motif": "crown",
+        "colors": {
+          "bg": "#1d1424",
+          "accent": "#f2c14e"
+        }
+      }
+    },
+    {
+      "id": 2,
+      "stage": "injustice",
+      "chapter": "プロローグ",
+      "narration": "父の葬儀が終わった夜、兄の健一は親戚の前で、封のない遺言書を広げました。「家も、預金の六千万円も、全部俺が継ぐ。父さんの遺言だ」。",
+      "scene": "葬儀後の座敷で遺言書を広げる兄",
+      "background": {
+        "motif": "envelope",
+        "colors": {
+          "bg": "#2a1318",
+          "accent": "#e85d5d"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "stage": "injustice",
+      "chapter": "プロローグ",
+      "narration": "私、川島美咲は、五年間ひとりで父を介護してきました。東京にいる健一が顔を見せたのは、その五年で一度だけ。私に残されたのは、裏山の古い作業小屋です。",
+      "scene": "裏山の古い作業小屋",
+      "background": {
+        "motif": "shack",
+        "colors": {
+          "bg": "#2a1318",
+          "accent": "#e85d5d"
+        }
+      }
+    },
+    {
+      "id": 4,
+      "stage": "overview",
+      "chapter": "プロローグ",
+      "narration": "その健一が、四十九日の席で親戚に頭を下げることになります。なぜこうなったのか。今日は、こうなるまでのお話をさせてください。",
+      "scene": "",
+      "background": {
+        "motif": "scale",
+        "colors": {
+          "bg": "#141821",
+          "accent": "#f2c14e"
+        }
+      }
+    },
+    {
+      "id": 5,
+      "stage": "misfortune",
+      "chapter": "第一章 遺言書",
+      "narration": "父の正雄が脳梗塞で倒れたのは、六年前の冬でした。命は助かったものの、右手に軽いまひが残ります。私は勤めていた会社を辞めて、実家に戻りました。",
+      "scene": "病院のベッドの父",
+      "background": {
+        "motif": "heart",
+        "colors": {
+          "bg": "#16202b",
+          "accent": "#8fb3d9"
+        }
+      }
+    },
+    {
+      "id": 6,
+      "stage": "misfortune",
+      "chapter": "第一章 遺言書",
+      "narration": "介護は朝から夜まで続きます。食事の支度、着替え、病院への付き添い。父は毎晩、リハビリのために帳面へ日記をつけていました。震える字で、一行ずつ。",
+      "scene": "机で帳面に字を書く父",
+      "background": {
+        "motif": "book",
+        "colors": {
+          "bg": "#16202b",
+          "accent": "#8fb3d9"
+        }
+      }
+    },
+    {
+      "id": 7,
+      "stage": "misfortune",
+      "chapter": "第一章 遺言書",
+      "narration": "夜中も、二度三度と父を起こしてトイレに連れていきます。眠れるのは、長くて四時間でした。",
+      "scene": "夜の寝室",
+      "background": {
+        "motif": "clock",
+        "colors": {
+          "bg": "#16202b",
+          "accent": "#8fb3d9"
+        }
+      }
+    },
+    {
+      "id": 8,
+      "stage": "misfortune",
+      "chapter": "第一章 遺言書",
+      "narration": "健一に電話をしたのは、一度や二度ではありません。「仕事が忙しい」「麗子の体調が悪い」。返ってくるのは、来られない理由ばかりでした。",
+      "scene": "電話を握る美咲",
+      "background": {
+        "motif": "comment",
+        "colors": {
+          "bg": "#16202b",
+          "accent": "#8fb3d9"
+        }
+      }
+    },
+    {
+      "id": 9,
+      "stage": "misfortune",
+      "chapter": "第一章 遺言書",
+      "narration": "一度だけ来た日も、健一は一時間ほどで帰っていきました。帰りぎわの一言は「家の名義、どうなってる？」。",
+      "scene": "玄関で靴をはく兄",
+      "background": {
+        "motif": "house",
+        "colors": {
+          "bg": "#16202b",
+          "accent": "#8fb3d9"
+        }
+      }
+    },
+    {
+      "id": 10,
+      "stage": "misfortune",
+      "chapter": "第一章 遺言書",
+      "narration": "父が亡くなったのは、今年の三月です。最期の朝も、私の作った味噌汁を「うまい」と言ってくれました。",
+      "scene": "実家の台所",
+      "background": {
+        "motif": "tear",
+        "colors": {
+          "bg": "#16202b",
+          "accent": "#8fb3d9"
+        }
+      }
+    },
+    {
+      "id": 11,
+      "stage": "misfortune",
+      "chapter": "第一章 遺言書",
+      "narration": "しばらくして、健一は家庭裁判所で検認を済ませた遺言書を持ってきました。検認済証明書を指さして「裁判所で確認済みだ。文句はないよな」と笑います。",
+      "scene": "検認済証明書の付いた遺言書",
+      "background": {
+        "motif": "document",
+        "colors": {
+          "bg": "#16202b",
+          "accent": "#8fb3d9"
+        }
+      }
+    },
+    {
+      "id": 12,
+      "stage": "misfortune",
+      "chapter": "第一章 遺言書",
+      "narration": "日付は六年前の秋。父が倒れる、ふた月前に書かれたものでした。",
+      "scene": "遺言書の日付",
+      "background": {
+        "motif": "clock",
+        "colors": {
+          "bg": "#16202b",
+          "accent": "#8fb3d9"
+        }
+      }
+    },
+    {
+      "id": 13,
+      "stage": "misfortune",
+      "chapter": "第一章 遺言書",
+      "narration": "「美咲には小屋をやる。小屋があれば十分だろ」。兄嫁の麗子は、私の顔を見ずに続けました。「家に住まわせてもらってたんだから、介護くらい当然でしょう」。",
+      "scene": "兄夫婦",
+      "background": {
+        "motif": "envelope",
+        "colors": {
+          "bg": "#16202b",
+          "accent": "#8fb3d9"
+        }
+      }
+    },
+    {
+      "id": 14,
+      "stage": "misfortune",
+      "chapter": "第一章 遺言書",
+      "narration": "五年分の貯金は、父の通院費と生活費に消え、ほとんど残っていません。",
+      "scene": "空に近い通帳",
+      "background": {
+        "motif": "coin",
+        "colors": {
+          "bg": "#16202b",
+          "accent": "#8fb3d9"
+        }
+      }
+    },
+    {
+      "id": 15,
+      "stage": "worse",
+      "chapter": "第二章 出ていけ",
+      "narration": "四十九日を待たずに、健一から手紙が届きます。書かれていたのは二行だけ。「家は売る。今月中に出ていけ」。",
+      "scene": "一枚の手紙",
+      "background": {
+        "motif": "envelope",
+        "colors": {
+          "bg": "#24131a",
+          "accent": "#e85d5d"
+        }
+      }
+    },
+    {
+      "id": 16,
+      "stage": "worse",
+      "chapter": "第二章 出ていけ",
+      "narration": "健一は、もう不動産会社に売却の相談を始めていました。家の前に知らない車が止まり、スーツの男性が外から写真を撮っていきます。",
+      "scene": "家を撮影する不動産会社の男性",
+      "background": {
+        "motif": "house",
+        "colors": {
+          "bg": "#24131a",
+          "accent": "#e85d5d"
+        }
+      }
+    },
+    {
+      "id": 17,
+      "stage": "worse",
+      "chapter": "第二章 出ていけ",
+      "narration": "荷物をまとめていた日、麗子が勝手に家へ上がり込んできました。母の形見の着物を、ごみ袋に詰めていきます。「古いものは処分しないと、家が売れないのよ」。",
+      "scene": "ごみ袋に詰められる着物",
+      "background": {
+        "motif": "tear",
+        "colors": {
+          "bg": "#24131a",
+          "accent": "#e85d5d"
+        }
+      }
+    },
+    {
+      "id": 18,
+      "stage": "worse",
+      "chapter": "第二章 出ていけ",
+      "narration": "私が止めると、麗子は親戚に電話をかけました。「美咲さんが家に居座って困ってるの」。",
+      "scene": "電話をかける麗子",
+      "background": {
+        "motif": "comment",
+        "colors": {
+          "bg": "#24131a",
+          "accent": "#e85d5d"
+        }
+      }
+    },
+    {
+      "id": 19,
+      "stage": "worse",
+      "chapter": "第二章 出ていけ",
+      "narration": "次の日から、親戚の私を見る目が変わります。父の妹である叔母の和子までが、電話口で黙り込むようになりました。",
+      "scene": "目をそらす親戚",
+      "background": {
+        "motif": "eye",
+        "colors": {
+          "bg": "#24131a",
+          "accent": "#e85d5d"
+        }
+      }
+    },
+    {
+      "id": 20,
+      "stage": "worse",
+      "chapter": "第二章 出ていけ",
+      "narration": "法事の相談をしようと電話をかけても、誰も出てくれません。かかってくるのは、健一からの「まだ出ていかないのか」という催促だけです。",
+      "scene": "鳴らない電話",
+      "background": {
+        "motif": "comment",
+        "colors": {
+          "bg": "#24131a",
+          "accent": "#e85d5d"
+        }
+      }
+    },
+    {
+      "id": 21,
+      "stage": "worse",
+      "chapter": "第二章 出ていけ",
+      "narration": "行き場のない私は、小屋に荷物を運びました。屋根は一部が抜け、雨が降ると床が濡れます。",
+      "scene": "雨漏りする小屋",
+      "background": {
+        "motif": "shack",
+        "colors": {
+          "bg": "#24131a",
+          "accent": "#e85d5d"
+        }
+      }
+    },
+    {
+      "id": 22,
+      "stage": "worse",
+      "chapter": "第二章 出ていけ",
+      "narration": "夜、懐中電灯の明かりで、父の古い道具を片付けました。父は昔、この小屋で木工をしていたのです。",
+      "scene": "懐中電灯に照らされた道具",
+      "background": {
+        "motif": "light",
+        "colors": {
+          "bg": "#24131a",
+          "accent": "#e85d5d"
+        }
+      }
+    },
+    {
+      "id": 23,
+      "stage": "worse",
+      "chapter": "第二章 出ていけ",
+      "narration": "棚の奥に、父の大工道具の箱がありました。持ち上げると、底板が少しだけ浮いています。",
+      "scene": "大工道具の箱",
+      "background": {
+        "motif": "key",
+        "colors": {
+          "bg": "#24131a",
+          "accent": "#e85d5d"
+        }
+      }
+    },
+    {
+      "id": 24,
+      "stage": "hope",
+      "chapter": "第三章 父の帳面",
+      "narration": "底板の下から出てきたのは、父の帳面と、白い封筒でした。",
+      "scene": "帳面と白い封筒",
+      "background": {
+        "motif": "book",
+        "colors": {
+          "bg": "#1a2418",
+          "accent": "#f2c14e"
+        }
+      }
+    },
+    {
+      "id": 25,
+      "stage": "hope",
+      "chapter": "第三章 父の帳面",
+      "narration": "帳面の最後のページに、震える字でこう書かれていました。「去年四月十日。法務局に遺言書を預けた。美咲に知らせること」。",
+      "scene": "帳面の最後のページ",
+      "background": {
+        "motif": "document",
+        "colors": {
+          "bg": "#1a2418",
+          "accent": "#f2c14e"
+        }
+      }
+    },
+    {
+      "id": 26,
+      "stage": "hope",
+      "chapter": "第三章 父の帳面",
+      "narration": "封筒の中身は、法務局の保管証です。父の名前と生年月日、そして保管番号が印字されています。",
+      "scene": "法務局の保管証",
+      "background": {
+        "motif": "envelope",
+        "colors": {
+          "bg": "#1a2418",
+          "accent": "#f2c14e"
+        }
+      }
+    },
+    {
+      "id": 27,
+      "stage": "hope",
+      "chapter": "第三章 父の帳面",
+      "narration": "父は、もう一通の遺言書を残していたのです。",
+      "scene": "",
+      "background": {
+        "motif": "lightbulb",
+        "colors": {
+          "bg": "#1a2418",
+          "accent": "#f2c14e"
+        }
+      }
+    },
+    {
+      "id": 28,
+      "stage": "hope",
+      "chapter": "第三章 父の帳面",
+      "narration": "帳面をめくると、別の日にはこう書いてありました。「健一に、会いに来てほしいと頼んだ。今月も来られないそうだ」。その三日後が、法務局へ行った日でした。",
+      "scene": "帳面の別のページ",
+      "background": {
+        "motif": "book",
+        "colors": {
+          "bg": "#1a2418",
+          "accent": "#f2c14e"
+        }
+      }
+    },
+    {
+      "id": 29,
+      "stage": "hope",
+      "chapter": "第三章 父の帳面",
+      "narration": "翌朝、私は保管証を持って法務局へ向かいました。窓口の職員は、手続きを順番に教えてくれます。",
+      "scene": "法務局の窓口",
+      "background": {
+        "motif": "scale",
+        "colors": {
+          "bg": "#1a2418",
+          "accent": "#f2c14e"
+        }
+      }
+    },
+    {
+      "id": 30,
+      "stage": "hope",
+      "chapter": "第三章 父の帳面",
+      "narration": "相続人なら、遺言書情報証明書という書類を請求できること。法務局に預けた遺言書には、家庭裁判所の検認がいらないこと。",
+      "scene": "",
+      "background": {
+        "motif": "magnifier",
+        "colors": {
+          "bg": "#1a2418",
+          "accent": "#f2c14e"
+        }
+      }
+    },
+    {
+      "id": 31,
+      "stage": "hope",
+      "chapter": "第三章 父の帳面",
+      "narration": "そして、遺言書を預けるときは、書いた本人が必ず法務局へ行かなければならないこと。",
+      "scene": "",
+      "background": {
+        "motif": "key",
+        "colors": {
+          "bg": "#1a2418",
+          "accent": "#f2c14e"
+        }
+      }
+    },
+    {
+      "id": 32,
+      "stage": "hope",
+      "chapter": "第三章 父の帳面",
+      "narration": "請求に必要な書類をそろえるため、その日は申請書だけを受け取りました。帰りのバスで、父の帳面を何度も読み返します。",
+      "scene": "バスの車内で帳面を読む美咲",
+      "background": {
+        "motif": "book",
+        "colors": {
+          "bg": "#1a2418",
+          "accent": "#f2c14e"
+        }
+      }
+    },
+    {
+      "id": 33,
+      "stage": "despair",
+      "chapter": "第四章 偽造の疑い",
+      "narration": "法務局のことを親戚のひとりに話したのが、間違いでした。話はすぐに健一へ伝わり、小屋に現れた健一は、帳面を見るなり声を荒らげます。",
+      "scene": "小屋に乗り込む兄",
+      "background": {
+        "motif": "eye",
+        "colors": {
+          "bg": "#250f14",
+          "accent": "#ff4d4d"
+        }
+      }
+    },
+    {
+      "id": 34,
+      "stage": "despair",
+      "chapter": "第四章 偽造の疑い",
+      "narration": "「父さんは右手がまひしてたんだ。遺言なんか書けるわけがない。美咲、お前が書いたんだろう」。",
+      "scene": "怒鳴る兄",
+      "background": {
+        "motif": "question",
+        "colors": {
+          "bg": "#250f14",
+          "accent": "#ff4d4d"
+        }
+      }
+    },
+    {
+      "id": 35,
+      "stage": "despair",
+      "chapter": "第四章 偽造の疑い",
+      "narration": "健一は、その日のうちに親戚中へ電話をかけました。「美咲が遺産欲しさに、父さんの遺言を偽造した」。",
+      "scene": "電話をかけ続ける兄",
+      "background": {
+        "motif": "comment",
+        "colors": {
+          "bg": "#250f14",
+          "accent": "#ff4d4d"
+        }
+      }
+    },
+    {
+      "id": 36,
+      "stage": "despair",
+      "chapter": "第四章 偽造の疑い",
+      "narration": "叔母の和子から届いたのは、短いメールです。「四十九日には来なくていいから」。",
+      "scene": "スマートフォンの画面",
+      "background": {
+        "motif": "envelope",
+        "colors": {
+          "bg": "#250f14",
+          "accent": "#ff4d4d"
+        }
+      }
+    },
+    {
+      "id": 37,
+      "stage": "despair",
+      "chapter": "第四章 偽造の疑い",
+      "narration": "その夜、麗子からも一行だけ届きました。「泥棒みたいな真似はやめてね」。",
+      "scene": "スマートフォンの画面",
+      "background": {
+        "motif": "poison",
+        "colors": {
+          "bg": "#250f14",
+          "accent": "#ff4d4d"
+        }
+      }
+    },
+    {
+      "id": 38,
+      "stage": "despair",
+      "chapter": "第四章 偽造の疑い",
+      "narration": "健一は、四十九日の席で家の売却を決めると言いました。不動産会社との話も、ほとんどまとまっているそうです。",
+      "scene": "実家の売却の書類",
+      "background": {
+        "motif": "house",
+        "colors": {
+          "bg": "#250f14",
+          "accent": "#ff4d4d"
+        }
+      }
+    },
+    {
+      "id": 39,
+      "stage": "despair",
+      "chapter": "第四章 偽造の疑い",
+      "narration": "数日後、不動産会社から電話がありました。「来週、買い手の方が家の中を見に来ます。鍵を開けておいてください」。",
+      "scene": "鍵束",
+      "background": {
+        "motif": "key",
+        "colors": {
+          "bg": "#250f14",
+          "accent": "#ff4d4d"
+        }
+      }
+    },
+    {
+      "id": 40,
+      "stage": "despair",
+      "chapter": "第四章 偽造の疑い",
+      "narration": "会社を辞めて五年、貯金もありません。弁護士に相談するお金も、すぐには用意できない状態でした。",
+      "scene": "小屋の中の美咲",
+      "background": {
+        "motif": "coin",
+        "colors": {
+          "bg": "#250f14",
+          "accent": "#ff4d4d"
+        }
+      }
+    },
+    {
+      "id": 41,
+      "stage": "despair",
+      "chapter": "第四章 偽造の疑い",
+      "narration": "帳面を開いても、父の字がにじんで読めません。保管証を握ったまま、私は一度、全部あきらめようと思いました。",
+      "scene": "保管証を握る手",
+      "background": {
+        "motif": "document",
+        "colors": {
+          "bg": "#250f14",
+          "accent": "#ff4d4d"
+        }
+      }
+    },
+    {
+      "id": 42,
+      "stage": "despair",
+      "chapter": "第四章 偽造の疑い",
+      "narration": "介護した五年間も、父の最後の言葉も、全部嘘にされてしまう。小屋の床に座り込んだまま、私は朝まで動けませんでした。",
+      "scene": "小屋の床に座り込む美咲",
+      "background": {
+        "motif": "tear",
+        "colors": {
+          "bg": "#250f14",
+          "accent": "#ff4d4d"
+        }
+      }
+    },
+    {
+      "id": 43,
+      "stage": "despair",
+      "chapter": "第四章 偽造の疑い",
+      "narration": "四十九日の朝、小屋の戸を叩く音がしました。立っていたのは、叔母の和子です。",
+      "scene": "小屋の戸口に立つ叔母",
+      "background": {
+        "motif": "eye",
+        "colors": {
+          "bg": "#250f14",
+          "accent": "#ff4d4d"
+        }
+      }
+    },
+    {
+      "id": 44,
+      "stage": "reversal",
+      "chapter": "第五章 四十九日",
+      "narration": "「美咲ちゃん、ごめんね。ずっと黙ってて。去年の春、兄さんを法務局まで車で送ったのは私なの。兄さんが何日もかけて遺言を書くのも、隣で見てた。健一には言うなって、口止めされてたのよ」。",
+      "scene": "車の助手席の父と叔母",
+      "background": {
+        "motif": "envelope",
+        "colors": {
+          "bg": "#1b1d2e",
+          "accent": "#ffd23f"
+        }
+      }
+    },
+    {
+      "id": 45,
+      "stage": "reversal",
+      "chapter": "第五章 四十九日",
+      "narration": "「健一の話を聞いて、私まで迷ってしまったの」。和子は、父から渡されたというメモも見せてくれます。「わしが死んだら、美咲に法務局のことを伝えてくれ」。",
+      "scene": "叔母が差し出すメモ",
+      "background": {
+        "motif": "document",
+        "colors": {
+          "bg": "#1b1d2e",
+          "accent": "#ffd23f"
+        }
+      }
+    },
+    {
+      "id": 46,
+      "stage": "victory",
+      "chapter": "第五章 四十九日",
+      "narration": "四十九日の座敷で、私は前日に受け取った証明書を読み上げます。日付は去年の四月。「家は美咲に。預金は健一と美咲で半分ずつ」。",
+      "scene": "座敷で証明書を読み上げる美咲",
+      "background": {
+        "motif": "scale",
+        "colors": {
+          "bg": "#2b2210",
+          "accent": "#ffd23f"
+        }
+      }
+    },
+    {
+      "id": 47,
+      "stage": "victory",
+      "chapter": "第五章 四十九日",
+      "narration": "前の遺言とぶつかる部分は、後の遺言で撤回したものとみなされます。六年前の遺言の分け方は、もう通りません。",
+      "scene": "",
+      "background": {
+        "motif": "lightbulb",
+        "colors": {
+          "bg": "#2b2210",
+          "accent": "#ffd23f"
+        }
+      }
+    },
+    {
+      "id": 48,
+      "stage": "victory",
+      "chapter": "第五章 四十九日",
+      "narration": "「そんなもの、美咲が勝手に」と健一が言いかけたとき、和子が立ち上がりました。",
+      "scene": "立ち上がる叔母",
+      "background": {
+        "motif": "eye",
+        "colors": {
+          "bg": "#2b2210",
+          "accent": "#ffd23f"
+        }
+      }
+    },
+    {
+      "id": 49,
+      "stage": "victory",
+      "chapter": "第五章 四十九日",
+      "narration": "「書いたのは兄さん本人よ。法務局へ送ったのも私」。和子の言葉で、健一の顔が青ざめていきます。偽造だと言いふらした親戚の前で、健一は黙って頭を下げました。",
+      "scene": "頭を下げる兄",
+      "background": {
+        "motif": "crown",
+        "colors": {
+          "bg": "#2b2210",
+          "accent": "#ffd23f"
+        }
+      }
+    },
+    {
+      "id": 50,
+      "stage": "victory",
+      "chapter": "第五章 四十九日",
+      "narration": "親戚のひとりが、健一にたずねました。「五年間で、何回お父さんに会いに来たの」。健一は、答えられません。",
+      "scene": "答えられない兄",
+      "background": {
+        "motif": "question",
+        "colors": {
+          "bg": "#2b2210",
+          "accent": "#ffd23f"
+        }
+      }
+    },
+    {
+      "id": 51,
+      "stage": "victory",
+      "chapter": "第五章 四十九日",
+      "narration": "麗子が捨てた母の着物は、和子がごみ置き場から拾って、預かってくれていました。遺言の最後には、もう一行。「健一へ。母さんの指輪は、お前に渡してほしい」。",
+      "scene": "母の着物と指輪",
+      "background": {
+        "motif": "heart",
+        "colors": {
+          "bg": "#2b2210",
+          "accent": "#ffd23f"
+        }
+      }
+    },
+    {
+      "id": 52,
+      "stage": "victory",
+      "chapter": "第五章 四十九日",
+      "narration": "麗子は、最後まで私と目を合わせないまま、先に車へ戻っていきました。",
+      "scene": "車へ戻る麗子",
+      "background": {
+        "motif": "house",
+        "colors": {
+          "bg": "#2b2210",
+          "accent": "#ffd23f"
+        }
+      }
+    },
+    {
+      "id": 53,
+      "stage": "ending",
+      "chapter": "エピローグ",
+      "narration": "実家は、私が守ることになりました。健一は、売却の話をすべて取り下げたそうです。あなたが美咲なら、母の指輪を健一に渡しますか？",
+      "scene": "朝の実家",
+      "background": {
+        "motif": "house",
+        "colors": {
+          "bg": "#1d2430",
+          "accent": "#f2c14e"
+        }
+      }
+    }
+  ],
+  "legal_checks": [
+    {
+      "claim": "自筆の遺言書は、家庭裁判所の検認を受ける。検認は遺言が有効かどうかを決める手続きではない",
+      "status": "確認済み",
+      "note": "兄の『裁判所で確認済み』という言い分が、遺言の有効性の保証にはならない、という作中の流れと合う",
+      "source_url": "https://www.courts.go.jp/saiban/syurui/syurui_kazi/kazi_06_17/index.html"
+    },
+    {
+      "claim": "封のある遺言書を家庭裁判所の外で開けると、5万円以下の過料になることがある",
+      "status": "確認済み",
+      "note": "作中で兄が親戚の前で広げた遺言書は、封のないものという設定にした",
+      "source_url": "https://www.courts.go.jp/saiban/syurui/syurui_kazi/kazi_06_17/index.html"
+    },
+    {
+      "claim": "法務局に預けた遺言書(自筆証書遺言書保管制度)は、家庭裁判所の検認がいらない",
+      "status": "確認済み",
+      "note": "法務局の案内資料で確認",
+      "source_url": "https://houmukyoku.moj.go.jp/nara/content/001322348.pdf"
+    },
+    {
+      "claim": "遺言書を預ける手続きは、遺言者本人が法務局へ行って行う",
+      "status": "確認済み",
+      "note": "本人出頭が必要。作中では叔母が付き添った。なお法務局は字が本人のものかまでは確認しないため、作中では叔母が書く姿を見ていた証言を合わせて根拠にしている",
+      "source_url": "https://houmukyoku.moj.go.jp/nara/content/001322348.pdf"
+    },
+    {
+      "claim": "預けると、名前・生年月日・保管所の名称・保管番号が書かれた保管証が渡される",
+      "status": "確認済み",
+      "note": "法務局の案内資料で確認",
+      "source_url": "https://houmukyoku.moj.go.jp/nara/content/001322348.pdf"
+    },
+    {
+      "claim": "相続人は、遺言者の死亡後に遺言書情報証明書を請求できる",
+      "status": "確認済み",
+      "note": "請求には戸籍などの書類が必要になるため、作中では書類をそろえる期間を置いた",
+      "source_url": "https://houmukyoku.moj.go.jp/kofu/content/001354391.pdf"
+    },
+    {
+      "claim": "前の遺言と後の遺言が抵触する部分は、後の遺言で前の遺言を撤回したものとみなす(民法1023条)",
+      "status": "確認済み",
+      "note": "撤回とみなされるのは、ぶつかる部分だけ",
+      "source_url": "https://law-lib.jp/subjects/2/provisions/1269"
+    },
+    {
+      "claim": "子2人だけが相続人のとき、遺留分は全体の2分の1で、1人あたり4分の1(民法1042条)",
+      "status": "確認済み",
+      "note": "新しい遺言で兄は預金の半分(3,000万円)を受け取るため、家の価値を加えても兄の遺留分(全体の4分の1)は侵害されない設定",
+      "source_url": "https://law-lib.jp/subjects/2/provisions/1288"
+    },
+    {
+      "claim": "兄が相続手続きの前に、不動産会社と家の売却の相談を進めていた",
+      "status": "物語上の設定",
+      "note": "売買契約は結んでいない設定。実際には相続登記などが済むまで売却はできない",
+      "source_url": null
+    }
+  ],
+  "sources": [
+    {
+      "title": "遺言書の検認",
+      "publisher": "裁判所",
+      "url": "https://www.courts.go.jp/saiban/syurui/syurui_kazi/kazi_06_17/index.html",
+      "accessed": "2026-10-16",
+      "used_for": "検認の目的と、有効・無効を判断する手続きではないこと"
+    },
+    {
+      "title": "自筆証書遺言書保管制度の案内",
+      "publisher": "奈良地方法務局",
+      "url": "https://houmukyoku.moj.go.jp/nara/content/001322348.pdf",
+      "accessed": "2026-10-16",
+      "used_for": "本人出頭、保管証の記載事項、手数料"
+    },
+    {
+      "title": "自筆証書遺言書保管制度の案内",
+      "publisher": "甲府地方法務局",
+      "url": "https://houmukyoku.moj.go.jp/kofu/content/001354391.pdf",
+      "accessed": "2026-10-16",
+      "used_for": "検認不要、遺言書情報証明書の請求"
+    },
+    {
+      "title": "民法1023条(前の遺言と後の遺言との抵触等)",
+      "publisher": "law-lib.jp",
+      "url": "https://law-lib.jp/subjects/2/provisions/1269",
+      "accessed": "2026-10-16",
+      "used_for": "後の遺言で抵触部分が撤回とみなされること"
+    },
+    {
+      "title": "民法1042条(遺留分の帰属及びその割合)",
+      "publisher": "law-lib.jp",
+      "url": "https://law-lib.jp/subjects/2/provisions/1288",
+      "accessed": "2026-10-16",
+      "used_for": "子のみが相続人のときの遺留分の割合"
+    }
+  ],
+  "bgm_suggestions": [
+    {
+      "mood": "静かで重い(不幸・絶望の場面)",
+      "genre": "ピアノソロ/弦楽",
+      "tempo": "BPM60〜70",
+      "reason": "朗読の声を邪魔せず、理不尽さを強める",
+      "search_keywords": [
+        "悲しい ピアノ",
+        "切ない 静か",
+        "sad piano"
+      ]
+    },
+    {
+      "mood": "ほのかな希望(帳面を見つける場面)",
+      "genre": "ピアノ+ストリングス",
+      "tempo": "BPM75〜85",
+      "reason": "絶望から希望へ気持ちが切り替わるのを助ける",
+      "search_keywords": [
+        "希望 ピアノ",
+        "優しい 感動",
+        "hopeful piano"
+      ]
+    },
+    {
+      "mood": "解放感(逆転〜完全勝利)",
+      "genre": "シネマティック/オーケストラ",
+      "tempo": "BPM90〜110",
+      "reason": "最後のカタルシスを大きくする",
+      "search_keywords": [
+        "感動 壮大",
+        "逆転 BGM",
+        "epic emotional"
+      ]
+    }
+  ],
+  "comment_prompt": "あなたが美咲なら、母の指輪を健一に渡しますか？"
+}

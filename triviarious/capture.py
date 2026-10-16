@@ -118,19 +118,29 @@ def viewport_deficit(browser: str) -> int:
     return deficit
 
 
-def screenshot(browser: str, html_path: Path, out: Path, t: float | None = None) -> Path:
+def screenshot(
+    browser: str,
+    html_path: Path,
+    out: Path,
+    t: float | None = None,
+    size: tuple[int, int] = (WIDTH, HEIGHT),
+    transparent: bool = False,
+) -> Path:
     """html_path を(必要なら ?t=秒 を付けて)キャプチャして out に保存する。
 
     出力形式は out の拡張子で決まる(.png / .jpg)。表示領域の不足分だけ
     縦に長く撮る場合があり、その余白はエンコード時に切り落とす。
+    transparent=True ならページの背景を透明にしてPNGで撮る(字幕を重ねる用)。
     """
     url = html_path.resolve().as_uri()
     if t is not None:
         url += f"?t={t:.4f}"
-    height = HEIGHT + viewport_deficit(browser)
+    width, height = size
+    height += viewport_deficit(browser)
+    extra = ["--default-background-color=00000000"] if transparent else []
     for flags in _headless_flags(browser):
         proc = subprocess.run(
-            [browser, *flags, *_COMMON_FLAGS, f"--window-size={WIDTH},{height}",
+            [browser, *flags, *_COMMON_FLAGS, *extra, f"--window-size={width},{height}",
              f"--screenshot={out}", url],
             capture_output=True,
             text=True,
@@ -148,6 +158,8 @@ def screenshot_many(
     jobs: list[tuple[Path, Path, float | None]],
     max_workers: int | None = None,
     on_progress=None,
+    size: tuple[int, int] = (WIDTH, HEIGHT),
+    transparent: bool = False,
 ) -> None:
     """(html, out, t) のジョブ列を並列にキャプチャする。"""
     workers = max_workers or min(6, os.cpu_count() or 4)
@@ -156,7 +168,7 @@ def screenshot_many(
     def _one(job):
         nonlocal done
         html, out, t = job
-        screenshot(browser, html, out, t)
+        screenshot(browser, html, out, t, size=size, transparent=transparent)
         done += 1
         if on_progress:
             on_progress(done, len(jobs))
