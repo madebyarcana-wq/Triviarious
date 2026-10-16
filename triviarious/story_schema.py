@@ -287,7 +287,14 @@ def split_subtitles(text: str, max_line: int = 24, max_lines: int = 2) -> list[s
     """
     text = re.sub(r"\s+", "", text)
     chunks: list[list[str]] = []
+    parts: list[str] = []
     for sentence in _sentences(text):
+        # 字幕2行に収まらない長いせりふは、かぎかっこの中でも句点で区切る
+        if len(sentence) > max_line * max_lines:
+            parts += [p for p in re.split(r"(?<=[。！？!?])(?![」』。！？!?])", sentence) if p]
+        else:
+            parts.append(sentence)
+    for sentence in parts:
         phrases: list[str] = []
         for ph in re.split(r"(?<=[、。！？!?」』…])(?![」』。、！？!?])", sentence):
             while len(ph) > max_line:

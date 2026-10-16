@@ -237,7 +237,7 @@ def _segment_clip(opts: StoryRenderOptions, bg_png: Path, subs: list[tuple[float
     parts = [chain]
     last = "b0"
     for k, (s, e, _) in enumerate(subs, start=1):
-        parts.append(f"[{last}][{k}:v]overlay=0:0:enable='between(t,{s:.3f},{e:.3f})'[v{k}]")
+        parts.append(f"[{last}][{k}:v]overlay=0:0:enable='gte(t,{s:.3f})*lt(t,{e:.3f})'[v{k}]")
         last = f"v{k}"
     parts.append(f"[{last}]format=yuv420p[out]")
     cmd += ["-filter_complex", ";".join(parts), "-map", "[out]", "-t", f"{dur:.3f}", "-r", str(FPS),
