@@ -74,10 +74,13 @@ class Handler(BaseHTTPRequestHandler):
                 self._send(200, (_WEB_DIR / "index.html").read_bytes(),
                            "text/html; charset=utf-8")
             elif path == "/api/config":
+                from .themes.motifs import MOTIFS, motif_svg
+
                 self._json(200, {
                     "themes": _theme_meta(),
                     "layout_css": layout_css(),
                     "theme_css": all_theme_css(),
+                    "motifs": {k: {"label": v[0], "svg": motif_svg(k)} for k, v in MOTIFS.items()},
                 })
             elif path.startswith("/output/"):
                 self._serve_output(path)

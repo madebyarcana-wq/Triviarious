@@ -13,6 +13,22 @@ def _timecode(sec: float) -> str:
     return f"{m:02d}:{s:02d}"
 
 
+def _background_label(bg: dict | None) -> str:
+    if not bg:
+        return ""
+    from .themes.motifs import MOTIFS
+
+    parts = []
+    if bg.get("image"):
+        parts.append(f"画像 {bg['image']}")
+    elif bg.get("motif") in MOTIFS:
+        parts.append(MOTIFS[bg["motif"]][0])
+    color = (bg.get("colors") or {}).get("bg")
+    if color:
+        parts.append(color)
+    return " / ".join(parts)
+
+
 def _md_escape(text: str) -> str:
     return text.replace("|", "\\|").replace("\n", "<br>")
 
@@ -43,9 +59,13 @@ def script_to_markdown(script: dict) -> str:
         telop = _md_escape(sc["telop"])
         if sc.get("subtelop"):
             telop += f"<br><small>{_md_escape(sc['subtelop'])}</small>"
+        memo = _md_escape(sc.get("note") or "")
+        bg_desc = _background_label(sc.get("background"))
+        if bg_desc:
+            memo = f"背景: {bg_desc}" + (f"<br>{memo}" if memo else "")
         lines.append(
             f"| {i} | {start}–{end} | {ROLE_LABELS.get(sc['role'], sc['role'])} "
-            f"| {telop} | {_md_escape(sc['narration'])} | {_md_escape(sc.get('note') or '')} |"
+            f"| {telop} | {_md_escape(sc['narration'])} | {memo} |"
         )
     lines.append("")
 

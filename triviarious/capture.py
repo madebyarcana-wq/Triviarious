@@ -3,9 +3,10 @@
 from __future__ import annotations
 
 import os
+import re
 import shutil
 import subprocess
-import sys
+import tempfile
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
@@ -48,8 +49,11 @@ def find_browser() -> str:
 
     pw_root = os.environ.get("PLAYWRIGHT_BROWSERS_PATH")
     if pw_root:
-        for p in sorted(Path(pw_root).glob("chromium*/chrome-linux/chrome"), reverse=True):
-            return str(p)
+        # headless_shell は表示領域がウィンドウサイズと一致するので最優先
+        for pattern in ("chromium_headless_shell*/chrome-linux/headless_shell",
+                        "chromium*/chrome-linux/chrome"):
+            for p in sorted(Path(pw_root).glob(pattern), reverse=True):
+                return str(p)
         link = Path(pw_root) / "chromium"
         if link.exists():
             return str(link)
@@ -68,32 +72,66 @@ def find_browser() -> str:
     )
 
 
-def _screenshot_cmd(browser: str, url: str, out: Path, headless_flag: str) -> list[str]:
-    return [
-        browser,
-        headless_flag,
-        "--no-sandbox",
-        "--disable-gpu",
-        "--disable-dev-shm-usage",
-        "--hide-scrollbars",
-        "--force-device-scale-factor=1",
-        f"--window-size={WIDTH},{HEIGHT}",
-        f"--screenshot={out}",
-        url,
-    ]
+_COMMON_FLAGS = [
+    "--no-sandbox",
+    "--disable-gpu",
+    "--disable-dev-shm-usage",
+    "--hide-scrollbars",
+    "--force-device-scale-factor=1",
+]
+
+_deficit_cache: dict[str, int] = {}
+
+
+def _headless_flags(browser: str) -> list[list[str]]:
+    if "headless_shell" in Path(browser).name:
+        return [[]]
+    return [["--headless=new"], ["--headless"]]
+
+
+def viewport_deficit(browser: str) -> int:
+    """新ヘッドレスChromeで表示領域がウィンドウより何px短いかを測る。
+
+    Chromeの --headless=new は表示領域が --window-size より短くなり、
+    そのまま撮ると画面下に帯が残る。差分だけウィンドウを広げて撮るために使う。
+    """
+    if browser in _deficit_cache:
+        return _deficit_cache[browser]
+    deficit = 0
+    if "headless_shell" not in Path(browser).name:
+        with tempfile.TemporaryDirectory() as d:
+            probe = Path(d) / "vp.html"
+            probe.write_text(
+                "<html><body><script>document.body.textContent="
+                "'VP='+innerHeight</script></body></html>",
+                encoding="utf-8",
+            )
+            proc = subprocess.run(
+                [browser, "--headless=new", *_COMMON_FLAGS,
+                 f"--window-size={WIDTH},{HEIGHT}", "--dump-dom", probe.as_uri()],
+                capture_output=True, text=True, timeout=60,
+            )
+            m = re.search(r"VP=(\d+)", proc.stdout)
+            if m:
+                deficit = max(0, HEIGHT - int(m.group(1)))
+    _deficit_cache[browser] = deficit
+    return deficit
 
 
 def screenshot(browser: str, html_path: Path, out: Path, t: float | None = None) -> Path:
     """html_path を(必要なら ?t=秒 を付けて)キャプチャして out に保存する。
 
-    出力形式は out の拡張子で決まる(.png / .jpg)。
+    出力形式は out の拡張子で決まる(.png / .jpg)。表示領域の不足分だけ
+    縦に長く撮る場合があり、その余白はエンコード時に切り落とす。
     """
     url = html_path.resolve().as_uri()
     if t is not None:
         url += f"?t={t:.4f}"
-    for flag in ("--headless=new", "--headless"):
+    height = HEIGHT + viewport_deficit(browser)
+    for flags in _headless_flags(browser):
         proc = subprocess.run(
-            _screenshot_cmd(browser, url, out, flag),
+            [browser, *flags, *_COMMON_FLAGS, f"--window-size={WIDTH},{height}",
+             f"--screenshot={out}", url],
             capture_output=True,
             text=True,
             timeout=120,

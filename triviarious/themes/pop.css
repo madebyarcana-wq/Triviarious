@@ -38,3 +38,4 @@
   box-shadow: 0 0 14px var(--ov-accent, rgba(255,230,0,.8));
 }
 .theme-pop .swipe { color: #fff; }
+.theme-pop { --motif-color: #fff; --motif-opacity: .2; }

@@ -14,6 +14,7 @@ ${OVERRIDE_STYLE}
 </head>
 <body class="theme-${THEME} role-${ROLE}">
   <div class="stage">
+    ${BG_LAYER}
     <header class="top">
       <div class="kicker">${KICKER}</div>
       <div class="index">${INDEX}</div>
@@ -28,6 +29,17 @@ ${OVERRIDE_STYLE}
     </footer>
   </div>
 <script>
+// テロップの各行が枠に収まらないときは、改行させずに文字を小さくして収める。
+(function () {
+  for (const el of document.querySelectorAll(".telop, .subtelop")) {
+    const max = parseFloat(getComputedStyle(el).maxWidth) || 940;
+    let size = parseFloat(getComputedStyle(el).fontSize);
+    while (el.scrollWidth > max + 1 && size > 32) {
+      size -= 2;
+      el.style.fontSize = size + "px";
+    }
+  }
+})();
 // ?t=<秒> でアニメーションをその時刻の状態で停止させる(未指定は完了状態)。
 // 各要素は --d でベースの animation-delay を持てる(スタガー用)。
 (function () {

@@ -151,6 +151,26 @@ python -m triviarious render samples/sample_script.json --theme pop -o out/video
 
 ---
 
+## シーンごとの背景
+
+台本の各シーンに `background` を書くと、そのシーンだけ背景が変わります。台本の自動生成では、話している言葉や状況に合う絵と色をClaudeが選びます。
+
+```json
+"background": {
+  "motif": "poison",
+  "colors": { "bg": "#160409", "accent": "#ff3b3b" },
+  "image": null
+}
+```
+
+- `motif`:背景に薄く描く線画。`box`(箱)・`catbox`(箱の中の猫)・`cat`・`atom`(原子)・`poison`(毒)・`flask`・`superposition`(重なり)・`document`(論文)・`book`・`question`・`lightbulb`(答え)・`light`・`wave`・`comment`・`clock`・`globe`・`magnifier`・`eye`・`heart`・`leaf`・`coin`・`chart`・`star`・`palette`
+- `colors`:そのシーンだけの背景色(`bg`)と強調色(`accent`)。省略や `null` はテーマの色のまま
+- `image`:自分で用意した写真やイラストのパス(台本ファイルからの相対パス可)。指定すると線画の代わりに画像を敷き、文字が読めるよう暗く(明るいテーマでは明るく)重ねます
+
+例:[`samples/schrodinger_script.json`](samples/schrodinger_script.json)
+
+---
+
 ## 台本(`台本.md`)の中身
 
 - **構成表**: 各シーンの時間・区分(フック/本編/CTA)・テロップ・ナレーション・演出メモ

@@ -5,6 +5,8 @@ from __future__ import annotations
 import re
 from typing import Any
 
+from .themes.motifs import motif_keys
+
 # ナレーションの想定読み上げ速度(文字/秒)。日本語のTikTokナレーションの実測目安
 CHARS_PER_SEC = 5.5
 MIN_SCENE_SEC = 2.0
@@ -36,7 +38,7 @@ SCRIPT_JSON_SCHEMA: dict[str, Any] = {
                     "role": {"type": "string", "enum": ["hook", "body", "cta"]},
                     "telop": {
                         "type": "string",
-                        "description": "画面テロップ。1行13文字以内・最大3行。改行は\\n。最重要語は**で囲む",
+                        "description": "画面テロップ。1行10文字以内(全角)・最大3行。改行は\\n。最重要語は**で囲む",
                     },
                     "subtelop": {
                         "type": ["string", "null"],
@@ -48,8 +50,38 @@ SCRIPT_JSON_SCHEMA: dict[str, Any] = {
                         "type": ["string", "null"],
                         "description": "編集・演出メモ(任意)",
                     },
+                    "background": {
+                        "type": "object",
+                        "description": "このシーンの背景。話している言葉・状況に関連する絵と色を選ぶ",
+                        "properties": {
+                            "motif": {
+                                "type": "string",
+                                "enum": [*motif_keys(), "none"],
+                                "description": "背景に薄く描く線画。内容に合うものがなければ none",
+                            },
+                            "colors": {
+                                "type": "object",
+                                "properties": {
+                                    "bg": {
+                                        "type": ["string", "null"],
+                                        "description": "背景色の#hex。シーンの雰囲気に合わせる。変えないなら null",
+                                    },
+                                    "accent": {
+                                        "type": ["string", "null"],
+                                        "description": "強調色の#hex。変えないなら null",
+                                    },
+                                },
+                                "required": ["bg", "accent"],
+                                "additionalProperties": False,
+                            },
+                        },
+                        "required": ["motif", "colors"],
+                        "additionalProperties": False,
+                    },
                 },
-                "required": ["role", "telop", "subtelop", "narration", "duration_sec", "note"],
+                "required": [
+                    "role", "telop", "subtelop", "narration", "duration_sec", "note", "background",
+                ],
                 "additionalProperties": False,
             },
         },
@@ -149,6 +181,11 @@ def validate_script(data: Any) -> dict:
             sc["duration_sec"] = round(min(MAX_SCENE_SEC, max(MIN_SCENE_SEC, float(dur))), 1)
         sc.setdefault("subtelop", None)
         sc.setdefault("note", None)
+        bg = sc.get("background")
+        if not isinstance(bg, dict):
+            sc["background"] = None
+        elif bg.get("motif") == "none":
+            bg["motif"] = None
 
     for key, default in (
         ("sources", []),

@@ -38,3 +38,5 @@
 .theme-news .step { background: rgba(13,33,73,.18); }
 .theme-news .step.active { background: var(--ov-accent, #d7263d); }
 .theme-news .swipe { color: #33415c; }
+.theme-news { --motif-color: var(--ov-text, #0d2149); --motif-opacity: .08;
+  --image-overlay: linear-gradient(rgba(238,242,247,.72), rgba(223,230,238,.82)); }

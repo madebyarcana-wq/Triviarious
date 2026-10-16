@@ -30,3 +30,5 @@
 .theme-marker .step { background: rgba(26,26,26,.15); }
 .theme-marker .step.active { background: var(--ov-accent, #fb5607); }
 .theme-marker .swipe { color: #8d8d8d; }
+.theme-marker { --motif-color: var(--ov-text, #1a1a1a); --motif-opacity: .07;
+  --image-overlay: linear-gradient(rgba(255,253,246,.78), rgba(255,253,246,.86)); }

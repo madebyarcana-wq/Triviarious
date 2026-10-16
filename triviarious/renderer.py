@@ -26,6 +26,16 @@ class RenderOptions:
     keep_frames: bool = False
     ffmpeg: str | None = None
     overrides: dict | None = None  # 色オーバーライド {"--ov-accent": "#2792c3", ...}
+    asset_dir: Path | None = None  # background.image の相対パスの基準(台本ファイルの場所)
+
+
+def _resolve_background(bg: dict | None, asset_dir: Path | None) -> dict | None:
+    if not bg or not bg.get("image") or asset_dir is None:
+        return bg
+    img = Path(bg["image"]).expanduser()
+    if not img.is_absolute() and (asset_dir / img).is_file():
+        bg = {**bg, "image": str((asset_dir / img).resolve())}
+    return bg
 
 
 def _capture_step(fps: int, quality: str) -> int:
@@ -67,6 +77,7 @@ def render_video(script: dict, out_path: Path, opts: RenderOptions, log=print) -
                     scene_total=len(scenes),
                     swipe_text=SWIPE_TEXTS.get(sc["role"], ""),
                     overrides=opts.overrides,
+                    background=_resolve_background(sc.get("background"), opts.asset_dir),
                 ),
                 encoding="utf-8",
             )

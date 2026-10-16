@@ -33,3 +33,4 @@
 .theme-cinema .step { background: rgba(245,241,230,.2); width: 20px; height: 20px; }
 .theme-cinema .step.active { background: var(--ov-accent, #c9a86a); }
 .theme-cinema .swipe { color: rgba(245,241,230,.55); }
+.theme-cinema { --motif-color: var(--ov-accent, #c9a86a); --motif-opacity: .14; }

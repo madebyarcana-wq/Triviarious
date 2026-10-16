@@ -9,10 +9,10 @@
   * { box-sizing: border-box; }
   body { margin:0; font-family:"Hiragino Sans","Yu Gothic",Meiryo,system-ui,sans-serif;
          color:var(--ink); background:var(--bg); }
-  header { padding:20px 28px; border-bottom:1px solid var(--line); background:#fff;
+  body > header { padding:20px 28px; border-bottom:1px solid var(--line); background:#fff;
            display:flex; align-items:baseline; gap:12px; }
-  header h1 { font-size:20px; margin:0; }
-  header .sub { color:var(--muted); font-size:13px; }
+  body > header h1 { font-size:20px; margin:0; }
+  body > header .sub { color:var(--muted); font-size:13px; }
   .wrap { max-width:1180px; margin:0 auto; padding:26px; display:grid;
           grid-template-columns: 1fr 380px; gap:30px; align-items:start; }
   @media (max-width:920px){ .wrap{ grid-template-columns:1fr; } }
@@ -153,9 +153,9 @@ const state = {
   script: null,           // 生成された台本(あれば)
   outDir: null,
   sampleTelop: {
-    hook: {kicker:"知って得する話", telop:"実は**縹色**って\nどんな色?", sub:"日本の伝統色シリーズ"},
-    body: {kicker:"知って得する話", telop:"縹色は**藍染め**の\n代表的な青", sub:"平安から続く色"},
-    cta:  {kicker:"知って得する話", telop:"他の**伝統色**も\n投稿中!", sub:"保存してね"},
+    hook: {kicker:"知って得する話", telop:"この青\n**なんて読む?**", sub:"日本の伝統色シリーズ", motif:"question"},
+    body: {kicker:"知って得する話", telop:"縹色は**藍染め**の\n代表的な青", sub:"藍だけで染めた色", motif:"palette"},
+    cta:  {kicker:"知って得する話", telop:"他の**伝統色**も\n投稿中!", sub:"保存してね", motif:"comment"},
   }
 };
 
@@ -265,11 +265,28 @@ function currentScene(role) {
     const sc = state.script.scenes.find(s => s.role === role) || state.script.scenes[0];
     return {
       kicker: state.script.meta.title,
-      telop: sc.telop, sub: sc.subtelop,
+      telop: sc.telop, sub: sc.subtelop, bg: sc.background || null,
     };
   }
   const s = state.sampleTelop[role];
-  return {kicker: s.kicker, telop: s.telop, sub: s.sub};
+  return {kicker: s.kicker, telop: s.telop, sub: s.sub,
+          bg: s.motif ? {motif: s.motif, colors: {}} : null};
+}
+
+function bgLayerHtml(bg) {
+  if (!bg || !bg.motif || !state.cfg.motifs[bg.motif]) return "";
+  return `<div class="bg-motif">${state.cfg.motifs[bg.motif].svg}</div>`;
+}
+
+const SCENE_COLOR_KEYS = {bg:"--ov-bg", accent:"--ov-accent", text:"--ov-text", glow:"--ov-glow"};
+
+function fitText(root) {
+  // 動画と同じく、はみ出す行は改行させず文字を縮めて収める
+  root.querySelectorAll(".telop, .subtelop").forEach(el => {
+    const max = parseFloat(getComputedStyle(el).maxWidth) || 940;
+    let size = parseFloat(getComputedStyle(el).fontSize);
+    while (el.scrollWidth > max + 1 && size > 32) { size -= 2; el.style.fontSize = size + "px"; }
+  });
 }
 
 function renderPreview(themeOverride) {
@@ -285,6 +302,7 @@ function renderPreview(themeOverride) {
   host.className = "stage-scale theme-" + theme + " role-" + role;
   host.innerHTML =
     `<div class="stage">
+       ${bgLayerHtml(sc.bg)}
        <header class="top"><div class="kicker">${esc(sc.kicker)}</div>
          <div class="index">${idx+1}/${total}</div></header>
        <main class="center">
@@ -295,6 +313,17 @@ function renderPreview(themeOverride) {
          <div class="swipe">${esc(swipe)}</div></footer>
      </div>`;
   applyOverridesTo(host, theme);
+  // シーン固有の色(台本の background.colors)をテーマの色指定の上に重ねる
+  const colors = (sc.bg && sc.bg.colors) || {};
+  const allowed = state.cfg.themes.find(t => t.name === theme).adjust.map(a => a.var);
+  for (const [k, v] of Object.entries(colors)) {
+    const cssVar = SCENE_COLOR_KEYS[k];
+    if (v && cssVar && allowed.includes(cssVar)) {
+      host.style.setProperty(cssVar, v);
+      if (cssVar === "--ov-bg") host.style.setProperty("--ov-bg-solid", v);
+    }
+  }
+  fitText(host);
 }
 
 function applyOverridesTo(el, theme) {
@@ -363,7 +392,8 @@ $("#renderOnly").addEventListener("click", async () => {
     const scenes = ["hook","body","cta"].map((role, i) => {
       const s = state.sampleTelop[role];
       return {role, telop:s.telop, subtelop:s.sub, narration:s.telop.replace(/\*\*/g,""),
-              duration_sec: role==="body"?4:3.5};
+              duration_sec: role==="body"?4:3.5,
+              background: s.motif ? {motif: s.motif, colors: {}} : null};
     });
     const script = {meta:{topic, title: topic, style:"サンプル", target_length_sec:15},
       scenes, sources:[], fact_check_notes:"", bgm_suggestions:[], hashtags:[], posting_tips:""};

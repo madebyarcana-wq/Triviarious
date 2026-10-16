@@ -95,6 +95,7 @@ def cmd_render(args) -> None:
         fps=args.fps,
         quality=args.quality,
         keep_frames=args.keep_frames,
+        asset_dir=script_path.parent,
     )
     render_video(script, out, opts)
 

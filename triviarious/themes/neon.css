@@ -44,3 +44,5 @@
   box-shadow: 0 0 16px var(--ov-glow, rgba(0,255,240,.9));
 }
 .theme-neon .swipe { color: var(--ov-glow, rgba(0,255,240,.75)); }
+.theme-neon { --motif-color: var(--ov-glow, #00fff0); --motif-opacity: .3;
+  --motif-filter: drop-shadow(0 0 10px var(--ov-glow, rgba(0,255,240,.8))); }

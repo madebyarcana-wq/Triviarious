@@ -109,6 +109,48 @@ def override_style(theme: str, overrides: dict[str, str] | None) -> str:
     return f":root {{ {decls} }}"
 
 
+# 台本の background.colors のキー → テーマごとのCSS変数
+_SCENE_COLOR_KEYS = {
+    "bg": "--ov-bg",
+    "accent": "--ov-accent",
+    "text": "--ov-text",
+    "glow": "--ov-glow",
+}
+
+
+def scene_color_overrides(theme: str, background: dict | None) -> dict[str, str]:
+    """シーン単位の色指定(background.colors)をCSS変数のdictに変換する。"""
+    colors = (background or {}).get("colors") or {}
+    out: dict[str, str] = {}
+    for key, value in colors.items():
+        var = _SCENE_COLOR_KEYS.get(key, key if key.startswith("--ov-") else None)
+        if var and value:
+            out[var] = value
+    # テーマが受け付けない変数(例: pop の --ov-glow)は valid_overrides で落ちる
+    return valid_overrides(theme, out) if out else {}
+
+
+def bg_layer_html(background: dict | None) -> str:
+    """シーン背景(写真 or 線画モチーフ)のHTMLを返す。"""
+    if not background:
+        return ""
+    parts = []
+    image = background.get("image")
+    if image:
+        path = Path(image).expanduser()
+        if path.is_file():
+            uri = path.resolve().as_uri()
+            parts.append(f'<div class="bg-image" style="background-image:url(\'{uri}\')"></div>')
+    motif = background.get("motif")
+    if motif and not image:
+        from .motifs import motif_svg
+
+        svg = motif_svg(motif)
+        if svg:
+            parts.append(f'<div class="bg-motif">{svg}</div>')
+    return "".join(parts)
+
+
 def telop_to_html(text: str) -> str:
     """テロップ文字列をHTMLへ。改行→<br>、**強調**→<em>。"""
     escaped = _html.escape(text, quote=False)
@@ -127,8 +169,16 @@ def build_scene_html(
     scene_total: int,
     swipe_text: str = "",
     overrides: dict[str, str] | None = None,
+    background: dict | None = None,
 ) -> str:
-    """1シーン分の1080x1920 HTMLページを生成する。"""
+    """1シーン分の1080x1920 HTMLページを生成する。
+
+    background = {"motif": "box", "image": "/path/to.jpg",
+                  "colors": {"bg": "#...", "accent": "#..."}}  (いずれも任意)
+    colors はこのシーンだけ全体の色指定(overrides)に上書きされる。
+    """
+    merged = dict(overrides or {})
+    merged.update(scene_color_overrides(theme, background))
     steps = "".join(
         f'<div class="step{" active" if i <= scene_index else ""}"></div>'
         for i in range(scene_total)
@@ -143,7 +193,8 @@ def build_scene_html(
         ROLE=role,
         LAYOUT_CSS=layout_css(),
         THEME_CSS=theme_css(theme),
-        OVERRIDE_STYLE=override_style(theme, overrides),
+        OVERRIDE_STYLE=override_style(theme, merged),
+        BG_LAYER=bg_layer_html(background),
         KICKER=_html.escape(kicker, quote=False),
         INDEX=f"{scene_index + 1}/{scene_total}",
         TELOP=telop_to_html(telop),

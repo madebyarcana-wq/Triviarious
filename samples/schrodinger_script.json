@@ -1,0 +1,209 @@
+{
+  "meta": {
+    "topic": "シュレーディンガーの猫",
+    "title": "シュレーディンガーの猫",
+    "style": "雑学/科学",
+    "target_length_sec": 45
+  },
+  "scenes": [
+    {
+      "role": "hook",
+      "telop": "箱の中の猫は\n**生きてる?死んでる?**",
+      "subtelop": null,
+      "narration": "箱の中の猫は、生きているのか、死んでいるのか。",
+      "duration_sec": 4.5,
+      "note": "冒頭1行目。間を空けずに読み始める",
+      "background": {
+        "motif": "catbox",
+        "colors": {
+          "bg": null,
+          "accent": null
+        }
+      }
+    },
+    {
+      "role": "body",
+      "telop": "1935年\n**シュレーディンガー**の問い",
+      "subtelop": null,
+      "narration": "1935年、物理学者シュレーディンガーの問いです。",
+      "duration_sec": 4.5,
+      "note": null,
+      "background": {
+        "motif": "document",
+        "colors": {
+          "bg": "#070b1c",
+          "accent": null
+        }
+      }
+    },
+    {
+      "role": "body",
+      "telop": "本人は\nこの猫を**どう**考えた?",
+      "subtelop": null,
+      "narration": "シュレーディンガー本人は、この猫をどう考えていたのでしょう？",
+      "duration_sec": 5.5,
+      "note": "冒頭3行目の問いかけ。語尾を上げて止める",
+      "background": {
+        "motif": "question",
+        "colors": {
+          "bg": "#0b0618",
+          "accent": null
+        }
+      }
+    },
+    {
+      "role": "body",
+      "telop": "箱の中には\n猫と**放射性物質**\nそして毒の小瓶",
+      "subtelop": null,
+      "narration": "箱には猫と放射性物質、そして毒の小瓶。",
+      "duration_sec": 4.0,
+      "note": null,
+      "background": {
+        "motif": "atom",
+        "colors": {
+          "bg": "#04110f",
+          "accent": null
+        }
+      }
+    },
+    {
+      "role": "body",
+      "telop": "崩壊すれば小瓶が割れ\n**猫は死ぬ**",
+      "subtelop": null,
+      "narration": "物質が崩壊すれば小瓶が割れ、猫は死にます。",
+      "duration_sec": 4.0,
+      "note": null,
+      "background": {
+        "motif": "poison",
+        "colors": {
+          "bg": "#160409",
+          "accent": "#ff3b3b"
+        }
+      }
+    },
+    {
+      "role": "body",
+      "telop": "当時の主流の解釈では\n開けるまで**生死が重なる**",
+      "subtelop": "コペンハーゲン解釈",
+      "narration": "当時の主流の解釈だと、箱を開けるまで猫は生と死が重なった状態に。",
+      "duration_sec": 6.0,
+      "note": null,
+      "background": {
+        "motif": "superposition",
+        "colors": {
+          "bg": "#0d0420",
+          "accent": null
+        }
+      }
+    },
+    {
+      "role": "body",
+      "telop": "答えは\n**「滑稽な例」**",
+      "subtelop": "大きな物に当てはめる危うさへの批判",
+      "narration": "シュレーディンガーの答えは「滑稽な例」。大きな物に量子の考えを当てはめる危うさへの批判でした。",
+      "duration_sec": 8.0,
+      "note": "ここで初めて答えを明かす。『滑稽な例』を少し強めに",
+      "background": {
+        "motif": "lightbulb",
+        "colors": {
+          "bg": "#041218",
+          "accent": "#ffd23f"
+        }
+      }
+    },
+    {
+      "role": "body",
+      "telop": "今は**空気や光**とぶつかり\n重なりはすぐ見えなくなる",
+      "subtelop": "※解釈の議論は今も続いています",
+      "narration": "今は、空気や光とぶつかることで重なりはすぐ見えなくなると説明されます。",
+      "duration_sec": 6.5,
+      "note": "断定を避けるため、画面に議論継続の注記を入れる",
+      "background": {
+        "motif": "light",
+        "colors": {
+          "bg": "#071022",
+          "accent": null
+        }
+      }
+    },
+    {
+      "role": "cta",
+      "telop": "開ける前の猫は\n**どんな状態**だと思う?",
+      "subtelop": "コメントで教えて",
+      "narration": "あなたは、開ける前の猫をどう思いますか？",
+      "duration_sec": 4.0,
+      "note": null,
+      "background": {
+        "motif": "comment",
+        "colors": {
+          "bg": null,
+          "accent": null
+        }
+      }
+    }
+  ],
+  "sources": [
+    {
+      "title": "Die gegenwärtige Situation in der Quantenmechanik",
+      "publisher": "E. Schrödinger, Die Naturwissenschaften 23 (1935) 807–812",
+      "url": "https://doi.org/10.1007/BF01491891",
+      "accessed": "2026-10-16",
+      "used_for": "1935年の論文で猫の思考実験を示したこと、『滑稽な例(burleske Fälle)』と書いたこと"
+    },
+    {
+      "title": "Interpretations of Quantum Mechanics: a critical survey",
+      "publisher": "arXiv:0811.3877",
+      "url": "https://arxiv.org/pdf/0811.3877",
+      "accessed": "2026-10-16",
+      "used_for": "デコヒーレンスで巨視的な重ね合わせの干渉が見えなくなること、観測問題は解釈で評価が分かれること"
+    },
+    {
+      "title": "シュレーディンガーの猫に関する論考(遠藤 隆)",
+      "publisher": "佐賀大学 学術リポジトリ",
+      "url": "https://saga-u.repo.nii.ac.jp/record/22582/files/endo_201806.pdf",
+      "accessed": "2026-10-16",
+      "used_for": "デコヒーレンス解釈と環境(自由度)との関係"
+    },
+    {
+      "title": "デコヒーレンスとシュレーディンガーの猫(書籍抜粋)",
+      "publisher": "日経BOOKプラス",
+      "url": "https://bookplus.nikkei.com/atcl/column/092500783/100200005/",
+      "accessed": "2026-10-16",
+      "used_for": "外部環境との接触で量子状態が壊れる、という一般向けの説明"
+    }
+  ],
+  "fact_check_notes": "1935年・Naturwissenschaftenの論文・『滑稽な例』の表現は書誌情報と二次的な解説で確認したが、原文本文は未読のため投稿前にDOIの原論文(独語)または信頼できる訳で確認を推奨。前回案の『今の物理学では猫が生死の重なった状態になることはほぼない』は、デコヒーレンスが観測問題を完全に解決したかのような断定になるため削除し、『重なりはすぐ見えなくなると説明される』『解釈の議論は今も続く』に改めた。思考実験の装置は原文では検出器(ガイガー計数管)・ハンマー・青酸の小瓶だが、尺の都合で『毒の小瓶』に簡略化している。『空気や光とぶつかる』はデコヒーレンス(環境との相互作用)の一般向けの言い換え。",
+  "bgm_suggestions": [
+    {
+      "mood": "ミステリアスで知的",
+      "genre": "ダークアンビエント/シンセ",
+      "tempo": "BPM70〜80・静か",
+      "reason": "思考実験の不思議さを出しつつ、ナレーションを邪魔しない",
+      "search_keywords": [
+        "ミステリアス 科学",
+        "サイバー アンビエント",
+        "mysterious science ambient"
+      ]
+    },
+    {
+      "mood": "淡々とした解説",
+      "genre": "ローファイ/エレクトロニカ",
+      "tempo": "BPM85前後",
+      "reason": "答えまで引っ張る構成でも中だるみさせない",
+      "search_keywords": [
+        "解説 BGM 淡々",
+        "lofi electronic",
+        "知的 ゆったり"
+      ]
+    }
+  ],
+  "hashtags": [
+    "#シュレーディンガーの猫",
+    "#雑学",
+    "#物理",
+    "#量子力学",
+    "#科学",
+    "#ショート"
+  ],
+  "posting_tips": "キャプションは『猫は生きてる?死んでる?』の問いかけで始めるとコメントが増えやすい。答えを明かす7シーン目の直前で半拍だけ間を取ると、最後まで見られやすい。"
+}

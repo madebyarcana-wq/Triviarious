@@ -27,13 +27,41 @@ body {
   font-size: 88px; font-weight: 900;
   line-height: 1.5;
   max-width: 940px;
-  overflow-wrap: anywhere;
+  white-space: nowrap;  /* 行は台本の改行でのみ分ける。はみ出す分は文字を縮めて収める */
 }
-.subtelop { font-size: 46px; font-weight: 700; line-height: 1.6; max-width: 900px; }
+.subtelop { font-size: 46px; font-weight: 700; line-height: 1.6; max-width: 900px; white-space: nowrap; }
 .bottom { display: flex; flex-direction: column; align-items: center; gap: 28px; }
 .steps  { display: flex; gap: 18px; }
 .step   { width: 26px; height: 26px; border-radius: 50%; }
 .swipe  { font-size: 34px; font-weight: 700; letter-spacing: .2em; opacity: .8; }
+
+/* ==== シーン背景(写真/線画モチーフ)。文字より奥に敷く ==== */
+.top, .center, .bottom { position: relative; z-index: 1; }
+.bg-image {
+  position: absolute; inset: 0; z-index: 0;
+  background-size: cover; background-position: center;
+}
+.bg-image::after {
+  content: ""; position: absolute; inset: 0;
+  background: var(--image-overlay, linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.6)));
+}
+.bg-motif {
+  position: absolute; inset: 0; z-index: 0;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--motif-color, currentColor);
+  opacity: var(--motif-opacity, .16);
+  pointer-events: none;
+}
+.bg-motif svg {
+  width: 880px; height: 880px;
+  transform: rotate(-6deg);
+  filter: var(--motif-filter, none);
+  animation-name: motif-in; animation-duration: .7s;
+}
+@keyframes motif-in {
+  0%   { opacity: 0; transform: scale(.88) rotate(-12deg); }
+  100% { opacity: 1; transform: scale(1) rotate(-6deg); }
+}
 
 /* フック(冒頭)・CTA(締め)シーンの調整 */
 .role-hook .telop { font-size: 104px; }

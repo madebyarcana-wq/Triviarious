@@ -102,7 +102,8 @@ def probe(ffmpeg: str | None = None) -> FfmpegInfo:
 
 
 def _encoder_args(info: FfmpegInfo, fps: int) -> list[str]:
-    common = ["-pix_fmt", "yuv420p", "-r", str(fps)]
+    # キャプチャが縦に長い場合(新ヘッドレスChromeの表示領域補正)は上端から1080x1920に切る
+    common = ["-vf", "crop=1080:1920:0:0", "-pix_fmt", "yuv420p", "-r", str(fps)]
     if info.encoder == "libx264":
         return ["-c:v", "libx264", "-preset", "medium", "-crf", "19",
                 "-profile:v", "high", "-movflags", "+faststart", *common]
